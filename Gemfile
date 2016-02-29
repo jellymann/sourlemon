@@ -10,6 +10,8 @@ gem 'slim-rails'
 gem 'jquery-rails'
 gem 'turbolinks', '~> 5.x'
 
+gem 'devise', '>= 4.0.0.rc1', '< 4.1'
+
 group :development, :test do
   gem 'byebug'
 end
