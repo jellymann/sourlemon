@@ -8,7 +8,6 @@ gem 'uglifier', '>= 1.3.0'
 
 gem 'jquery-rails'
 gem 'turbolinks', '~> 5.x'
-gem 'jbuilder', '~> 2.0'
 
 group :development, :test do
   gem 'byebug'
