@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_filter :check_user_auth, except: [:index, :show]
 
   def index
     @posts = Post.all
@@ -45,5 +46,9 @@ class PostsController < ApplicationController
 
     def post_params
       params.require(:post).permit(:title, :body)
+    end
+
+    def check_user_auth
+      raise ActionController::RoutingError.new('Not Found') unless user_signed_in?
     end
 end

@@ -5,7 +5,7 @@ table
     tr
       th Title
       th Body
-      th colspan="3"
+      th colspan=(user_signed_in? ? "3" : "1")
 
   tbody
     - @posts.each do |post|
@@ -13,9 +13,11 @@ table
         td= post.title
         td= post.body
         td= link_to 'Show', post
-        td= link_to 'Edit', edit_post_path(post)
-        td= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }
+        - if user_signed_in?
+          td= link_to 'Edit', edit_post_path(post)
+          td= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }
 
 br
 
-= link_to 'New Post', new_post_path
+- if user_signed_in?
+  = link_to 'New Post', new_post_path
