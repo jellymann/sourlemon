@@ -1,23 +1,24 @@
-h1 Posts
+= content_for :left_title_buttons do
+  a href="#"
+    paper-icon-button icon="menu"
 
-table
-  thead
-    tr
-      th Title
-      th Body
-      th colspan=(user_signed_in? ? "3" : "1")
-
-  tbody
-    - @posts.each do |post|
-      tr
-        td= post.title
-        td= post.body
-        td= link_to 'Show', post
+.posts
+  - @posts.each do |post|
+    paper-material.post--short elevation="2"
+      paper-toolbar.post-title
+        span.title= post.title
+        =link_to post do
+          paper-icon-button icon="open-in-new"
         - if user_signed_in?
-          td= link_to 'Edit', edit_post_path(post)
-          td= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' }
+          = link_to edit_post_path(post) do
+            paper-icon-button icon="create"
+          = link_to post, method: :delete, data: { confirm: 'Are you sure?' } do
+            paper-icon-button icon="delete"
+      .buttons
+      .body= post.body
+      .body-fade
 
-br
-
-- if user_signed_in?
-  = link_to 'New Post', new_post_path
+= content_for :fixed do
+  - if user_signed_in?
+    = link_to new_post_path do
+      paper-fab.orange icon="add"

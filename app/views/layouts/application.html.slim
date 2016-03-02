@@ -6,12 +6,24 @@ html
 
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => 'reload'
     = javascript_include_tag 'application', 'data-turbolinks-track' => 'reload'
+    = html_import_tag 'application'
 
-  body
-    p#notice= notice
-    p#alert= alert
+  body.fullbleed.layout.vertical
+    paper-header-panel.flex.main-header
+      paper-toolbar.toolbar
+        .header-logo
+          h1 Sour {>.<} Lemon
+        = yield :left_title_buttons
+        span.title
+        - if user_signed_in?
+          = link_to destroy_user_session_path, :method => :delete do
+            paper-icon-button icon="power-settings-new"
 
-    - if user_signed_in?
-      = link_to 'Sign Out', destroy_user_session_path, :method => :delete
+      .content
+        .notices
+          p#notice= notice
+          p#alert= alert
+        = yield
 
-    = yield
+    .fixed
+      = yield :fixed
