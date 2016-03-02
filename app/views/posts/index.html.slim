@@ -1,12 +1,13 @@
-= content_for :left_title_buttons do
-  a href="#"
-    paper-icon-button icon="menu"
+/
+  = content_for :left_title_buttons do
+    a href="#"
+      paper-icon-button icon="menu"
 
 .posts
   - @posts.each do |post|
-    paper-material.post--short elevation="2"
+    paper-material.post--short elevation="1"
       paper-toolbar.post-title
-        span.title= post.title
+        = link_to post.title, post, class: 'title'
         =link_to post do
           paper-icon-button icon="open-in-new"
         - if user_signed_in?
