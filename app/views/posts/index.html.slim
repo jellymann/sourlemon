@@ -15,7 +15,7 @@
           = link_to post, method: :delete, data: { confirm: 'Are you sure?' } do
             paper-icon-button icon="delete"
       .buttons
-      .body= post.body
+      .body= post.body_html
       .body-fade
 
 = content_for :fixed do

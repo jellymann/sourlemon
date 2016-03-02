@@ -12,6 +12,7 @@ gem 'polymer-elements-rails'
 gem 'jquery-rails'
 
 gem 'devise', '>= 4.0.0.rc1', '< 4.1'
+gem 'redcarpet'
 
 group :development, :test do
   gem 'byebug'
