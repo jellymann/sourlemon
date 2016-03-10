@@ -15,12 +15,15 @@ html
       paper-header-panel drawer=true
         paper-toolbar.primary-color
           paper-icon-button icon="menu" paper-drawer-toggle=true
-        div
-          ul
-            li Foo
-            li Bar
-            li Baz
-            li Qux
+
+        .main-menu role="listbox"
+          = link_to posts_path, class: 'current' do
+            paper-item Blog
+          = link_to posts_path do
+            paper-item Archive
+          = link_to posts_path do
+            paper-item About
+
       paper-header-panel.flex.main-header main=true
         paper-toolbar.primary-color.toolbar
           .header-logo

@@ -6,6 +6,7 @@ $accent-color: #FF5722
 $primary-text-color: #212121
 $secondary-text-color: #727272
 $divider-color: #B6B6B6
+$hilight-color: #CECECE
 
 $break-small: 480px
 $break-medium: 640px
@@ -20,6 +21,16 @@ paper-toolbar.primary-color
 
   paper-icon-button
     color: white
+
+.main-menu
+  a
+    color: $primary-text-color
+    text-decoration: none
+
+    &.current, &:hover
+      paper-item
+        background: $hilight-color
+
 
 paper-header-panel.main-header
 
