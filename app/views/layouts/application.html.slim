@@ -15,9 +15,9 @@ html
       paper-toolbar.toolbar
         .header-logo
           h1.normal-logo
-            'Sour {>.<} Lemon
+            = link_to 'Sour {>.<} Lemon', root_path
           h1.small-logo
-            '{>.<}
+            = link_to '{>.<}', root_path
         = yield :left_title_buttons
         span.title
         - if user_signed_in?
