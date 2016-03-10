@@ -15,7 +15,9 @@ $post-width-large: $break-large - 102px
 body
   font-family: 'Roboto', 'Noto', sans-serif
 
-paper-toolbar
+paper-toolbar.primary-color
+  background: $primary-color
+
   paper-icon-button
     color: white
 
@@ -23,7 +25,6 @@ paper-header-panel.main-header
 
   paper-toolbar.toolbar
     position: relative
-    background: $primary-color
 
     .header-logo
       position: absolute
@@ -75,6 +76,8 @@ paper-header-panel.main-header
   background: white
 
 .content
+  height: 100%
+  position: relative
 
   .posts
     width: 90%

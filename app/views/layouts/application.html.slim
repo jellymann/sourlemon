@@ -11,26 +11,35 @@ html
 
   body.fullbleed.layout.vertical
 
-    paper-header-panel.flex.main-header
-      paper-toolbar.toolbar
-        .header-logo
-          h1.normal-logo
-            = link_to 'Sour {>.<} Lemon', root_path
-          h1.small-logo
-            = link_to '{>.<}', root_path
-        = yield :left_title_buttons
-        span.title
-        - if user_signed_in?
-          = link_to destroy_user_session_path, :method => :delete do
-            paper-icon-button icon="power-settings-new"
+    paper-drawer-panel.flex#drawerPanel force-narrow=true
+      paper-header-panel drawer=true
+        paper-toolbar.primary-color
+          paper-icon-button icon="menu" paper-drawer-toggle=true
+        div
+          ul
+            li Foo
+            li Bar
+            li Baz
+            li Qux
+      paper-header-panel.flex.main-header main=true
+        paper-toolbar.primary-color.toolbar
+          .header-logo
+            h1.normal-logo
+              = link_to 'Sour {>.<} Lemon', root_path
+            h1.small-logo
+              = link_to '{>.<}', root_path
+          = yield :left_title_buttons
+          span.title
+          - if user_signed_in?
+            = link_to destroy_user_session_path, :method => :delete do
+              paper-icon-button icon="power-settings-new"
+        .content
+          = yield
 
-      .content
-        = yield
-
-      - if notice
-        paper-toast#noticeToast text=notice onload="noticeToast.show()"
-      - if alert
-        paper-toast#alertToast text=alert onload="alertToast.show()"
+    - if notice
+      paper-toast#noticeToast text=notice onload="noticeToast.show()"
+    - if alert
+      paper-toast#alertToast text=alert onload="alertToast.show()"
 
     .fixed
       = yield :fixed

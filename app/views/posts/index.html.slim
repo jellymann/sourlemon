@@ -1,9 +1,7 @@
-/
-  = content_for :left_title_buttons do
-    a href="#"
-      paper-icon-button icon="menu"
+= content_for :left_title_buttons do
+  paper-icon-button icon="menu" paper-drawer-toggle=true
 
-.posts
+.posts#postsList
   - @posts.each do |post|
       paper-material.post--short elevation="1" data-slug=post.slug_url
         .body
