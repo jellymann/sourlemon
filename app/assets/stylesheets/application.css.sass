@@ -7,6 +7,14 @@ $primary-text-color: #212121
 $secondary-text-color: #727272
 $divider-color: #B6B6B6
 
+$break-small: 480px
+$break-medium: 640px
+$break-large: 1024px
+$post-width-large: $break-large - 102px
+
+body
+  font-family: 'Roboto', 'Noto', sans-serif
+
 paper-toolbar
   paper-icon-button
     color: white
@@ -28,8 +36,21 @@ paper-header-panel.main-header
       h1
         text-align: center
         padding: 0
-        margin-top: 1rem
+        margin-top: 16px
         font-family: monospace
+
+        @media screen and (max-width: $break-medium)
+          margin-top: 12px
+
+      h1.normal-logo
+        display: block
+        @media screen and (max-width: $break-small)
+          display: none
+
+      h1.small-logo
+        display: none
+        @media screen and (max-width: $break-small)
+          display: block
 
 .fixed
   position: fixed
@@ -37,37 +58,51 @@ paper-header-panel.main-header
   right: 0
   padding: 23px 46px 23px 15px
 
+  @media screen and (max-width: $break-small)
+    padding: 23px 20px 10px 15px
+
   paper-fab.orange
     background: $accent-color
 
+#mainContainer
+  background: white
+
 .content
+
   .posts
-    width: 66%
+    width: 90%
     margin: 0 auto
 
+    @media screen and (max-width: $break-small)
+      width: 100%
+
+    @media screen and (min-width: $break-large)
+      width: $post-width-large
+
     .post
+      background: white
       position: relative
       margin-bottom: 1rem
       padding-bottom: 1rem
 
-      .post-title
-        background: #F0F0F0
-        color: $primary-text-color
-        border-bottom: 1px solid $divider-color
-
-        .title
-          margin-left: 0
-
-        a.title
-          color: $primary-text-color
-          text-decoration: none
+      .buttons
+        float: right
+        padding-top: 30px
+        padding-right: 10px
 
         paper-icon-button
           color: $primary-text-color
 
+      h1
+        a
+          color: $primary-text-color
+          text-decoration: none
+
+          &:hover
+            border-bottom: 2px dotted $primary-text-color
+
       .body
         padding: 0.5rem
-        font-family: 'Roboto', 'Noto', sans-serif
         font-weight: lighter
         margin: 0 auto
         width: 90%
@@ -87,3 +122,4 @@ paper-header-panel.main-header
       @extend .post
       max-height: 300px
       overflow: hidden
+      cursor: pointer

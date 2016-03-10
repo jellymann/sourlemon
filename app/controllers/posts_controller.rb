@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :set_post, only: [:edit, :update, :destroy]
   before_filter :check_user_auth, except: [:index, :show]
 
   def index
@@ -7,6 +7,9 @@ class PostsController < ApplicationController
   end
 
   def show
+    start_of_month = Time.new(params[:year], params[:month])
+    end_of_month = start_of_month.end_of_month
+    @post = Post.where('created_at >= ? and created_at <= ? and slug = ?', start_of_month, end_of_month, params[:slug]).first
   end
 
   def new
@@ -20,7 +23,7 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
 
     if @post.save
-      redirect_to @post, notice: 'Post was successfully created.'
+      redirect_to @post.slug_url, notice: 'Post was successfully created.'
     else
       render :new
     end
@@ -28,7 +31,7 @@ class PostsController < ApplicationController
 
   def update
     if @post.update(post_params)
-      redirect_to @post, notice: 'Post was successfully updated.'
+      redirect_to @post.slug_url, notice: 'Post was successfully updated.'
     else
       render :edit
     end

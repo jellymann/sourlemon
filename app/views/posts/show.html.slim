@@ -4,12 +4,13 @@
 
 .posts
   paper-material.post elevation="3"
-    paper-toolbar.post-title
-      span.title= @post.title
+    .buttons
       - if user_signed_in?
         = link_to edit_post_path(@post) do
           paper-icon-button icon="create"
         = link_to @post, method: :delete, data: { confirm: 'Are you sure?' } do
           paper-icon-button icon="delete"
-    .buttons
-    .body= @post.body_html
+    .body
+      h1
+        = link_to @post.title, @post.slug_url
+      = @post.body_html

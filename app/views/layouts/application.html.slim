@@ -1,6 +1,7 @@
 doctype html
 html
   head
+    meta name="viewport" content="width=device-width; initial-scale=1.0"
     title Sour Lemon
     = csrf_meta_tags
 
@@ -9,10 +10,14 @@ html
     = html_import_tag 'application'
 
   body.fullbleed.layout.vertical
+
     paper-header-panel.flex.main-header
       paper-toolbar.toolbar
         .header-logo
-          h1 Sour {>.<} Lemon
+          h1.normal-logo
+            'Sour {>.<} Lemon
+          h1.small-logo
+            '{>.<}
         = yield :left_title_buttons
         span.title
         - if user_signed_in?
@@ -20,10 +25,12 @@ html
             paper-icon-button icon="power-settings-new"
 
       .content
-        .notices
-          p#notice= notice
-          p#alert= alert
         = yield
+
+      - if notice
+        paper-toast#noticeToast text=notice onload="noticeToast.show()"
+      - if alert
+        paper-toast#alertToast text=alert onload="alertToast.show()"
 
     .fixed
       = yield :fixed
