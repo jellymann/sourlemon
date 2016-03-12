@@ -10,20 +10,17 @@ Polymer({
   },
 
   listeners: {
-    'tap': 'onTap'
+    'postMaterial.mouseover': 'onMouseover',
+    'postMaterial.mouseout': 'onMouseout'
   },
 
   ready: function() {
     this.$.titleTag.href = this.url;
+    this.$.summaryOverlay.href = this.url;
     if (this.summary) {
       this.$.postMaterial.animated = true;
       this.$.postMaterial.elevation = 1;
     }
-  },
-
-  onTap: function() {
-    if (!this.summary) return;
-    window.location.href = this.url;
   },
 
   onMouseover: function() {
