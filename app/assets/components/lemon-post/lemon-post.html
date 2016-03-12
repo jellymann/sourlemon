@@ -4,11 +4,13 @@
 <dom-module id="lemon-post">
   <link rel="stylesheet" href="lemon-post.css" />
   <template>
-    <paper-material elevation="3">
+    <paper-material id="postMaterial" elevation="3" on-mouseover='onMouseover'
+            on-mouseout='onMouseout'>
       <div class="body">
         <h1><a id="titleTag" href="#">[[title]]</a></h1>
         <content></content>
       </div>
+      <div class="body-fade"></div>
     </paper-material>
   </template>
 

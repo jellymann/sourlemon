@@ -3,12 +3,8 @@
 
 .posts#postsList
   - @posts.each do |post|
-      paper-material.post--short elevation="1" data-slug=post.slug_url
-        .body
-          h1
-            = link_to post.title, post.slug_url
-          = post.body_html
-        .body-fade
+    lemon-post title=post.title url=post.slug_url summary=true
+      = post.body_html
 
 = content_for :fixed do
   - if user_signed_in?
