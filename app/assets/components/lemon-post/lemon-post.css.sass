@@ -44,3 +44,13 @@
 
         paper-ripple
           color: black
+
+@media screen and (max-width: $break-small)
+  \:host
+    paper-material
+      margin-bottom: 0
+      border-bottom: 1px solid $divider-color
+
+    &:last-child
+      paper-material
+        border-bottom: none
