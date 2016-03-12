@@ -7,7 +7,6 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'slim-rails'
 gem 'polymer-rails'
-gem 'polymer-elements-rails'
 
 gem 'jquery-rails'
 

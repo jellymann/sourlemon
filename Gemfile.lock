@@ -79,8 +79,6 @@ GEM
       nokogiri
     orm_adapter (0.5.0)
     pg (0.18.4)
-    polymer-elements-rails (1.0.1)
-      polymer-rails (~> 1.0, >= 1.0.3)
     polymer-rails (1.2.4.1)
       nokogiri (~> 1.6)
       nokogumbo (= 1.4.2)
@@ -179,7 +177,6 @@ DEPENDENCIES
   jquery-rails
   listen (~> 3.0.5)
   pg
-  polymer-elements-rails
   polymer-rails
   puma
   rails (>= 5.0.0.beta3, < 5.1)

@@ -10,7 +10,6 @@ html
     = html_import_tag 'application'
 
   body.fullbleed.layout.vertical
-
     paper-drawer-panel.flex#drawerPanel force-narrow=true
       paper-header-panel drawer=true
         paper-toolbar.primary-color
@@ -39,10 +38,8 @@ html
         .content
           = yield
 
-    - if notice
-      paper-toast#noticeToast text=notice onload="noticeToast.show()"
-    - if alert
-      paper-toast#alertToast text=alert onload="alertToast.show()"
+    - if alert || notice
+      paper-toast text=(alert||notice) opened=true
 
     .fixed
       = yield :fixed

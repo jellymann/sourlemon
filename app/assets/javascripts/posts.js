@@ -10,9 +10,4 @@ $(function() {
   $('.post--short').click(function(e) {
     window.location.href = $(this).data('slug');
   });
-
-  setTimeout(function() {
-    var toasts = document.getElementsByTagName('paper-toast');
-    for (var i = 0; i < toasts.length; i++) { toasts[i].show(); }
-  }, 100);
 });
