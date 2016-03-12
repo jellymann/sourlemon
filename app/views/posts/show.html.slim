@@ -3,14 +3,10 @@
     paper-icon-button icon="arrow-back"
 
 .posts
-  paper-material.post elevation="3"
-    .buttons
-      - if user_signed_in?
-        = link_to edit_post_path(@post) do
-          paper-icon-button icon="create"
-        = link_to @post, method: :delete, data: { confirm: 'Are you sure?' } do
-          paper-icon-button icon="delete"
-    .body
-      h1
-        = link_to @post.title, @post.slug_url
-      = @post.body_html
+  lemon-post title=@post.title url=@post.slug_url
+    = @post.body_html
+
+= content_for :fixed do
+  - if user_signed_in?
+    = link_to edit_post_path(@post) do
+      paper-fab.orange icon="create"
