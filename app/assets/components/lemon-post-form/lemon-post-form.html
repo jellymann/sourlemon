@@ -2,14 +2,20 @@
   <link rel="stylesheet" href="lemon-post-form.css" />
   <template>
     <content select="form"></content>
-    <paper-input class="post-form-input" id="lemon_post_title"
-        label="title" required auto-validate error-message="required"></paper-input>
-    <paper-textarea class="post-form-input" id="lemon_post_body"
-        label="body" required auto-validate error-message="required"></paper-textarea>
-    <div class="button-bar">
-      <content select=".buttons"></content>
-      <paper-button id="lemon_submit_post">Publish</paper-button>
-    </div>
+    <iron-media-query query="(max-width: 480px)" query-matches="{{smallScreen}}"></iron-media-query>
+    <paper-material class="posts" elevation$="[[_computeElevation(smallScreen)]]">
+      <div class="post-form">
+        <content select=".header"></content>
+        <paper-input class="post-form-input" id="lemon_post_title"
+            label="title" required auto-validate error-message="required"></paper-input>
+        <paper-textarea class="post-form-input" id="lemon_post_body"
+            label="body" required auto-validate error-message="required"></paper-textarea>
+        <div class="button-bar">
+          <content select=".buttons"></content>
+          <paper-button id="lemon_submit_post">Publish</paper-button>
+        </div>
+      </div>
+    </paper-material>
   </template>
 
   <script src="lemon-post-form.js"></script>

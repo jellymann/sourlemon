@@ -2,13 +2,12 @@
   = link_to :back do
     paper-icon-button icon="arrow-back"
 
-paper-material.posts
-  .post-form
+lemon-post-form
+  .header
     h1 Editing Post
 
-    lemon-post-form
-      = render 'form', post: @post
+  = render 'form', post: @post
 
-      .buttons
-        = link_to @post, method: :delete, data: { confirm: 'Are you sure?' } do
-          paper-button.delete Delete
+  .buttons
+    = link_to @post, method: :delete, data: { confirm: 'Are you sure?' } do
+      paper-button.delete Delete

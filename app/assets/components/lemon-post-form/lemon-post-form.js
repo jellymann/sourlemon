@@ -18,5 +18,9 @@ Polymer({
     this._post_title.value = this.$.lemon_post_title.value;
     this._post_body.value = this.$.lemon_post_body.value;
     this.form.submit();
+  },
+
+  _computeElevation: function(smallScreen) {
+    return smallScreen ? 0 : 3;
   }
 });

@@ -2,9 +2,7 @@
   = link_to :back do
     paper-icon-button icon="arrow-back"
 
-paper-material.posts
-  .post-form
+lemon-post-form
+  .header
     h1 New Post
-
-    lemon-post-form
-      = render 'form', post: @post
+  = render 'form', post: @post
