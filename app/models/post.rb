@@ -10,9 +10,7 @@ class Post < ApplicationRecord
 
   def slug_url
     @_slug_url ||= begin
-      year = created_at.year
-      month = created_at.month
-      "/posts/#{year}/#{month}/#{slug}"
+      "/blog/#{created_at.strftime('%Y/%m/%d')}/#{slug}"
     end
   end
 

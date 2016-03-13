@@ -7,9 +7,8 @@ class PostsController < ApplicationController
   end
 
   def show
-    start_of_month = Time.new(params[:year], params[:month])
-    end_of_month = start_of_month.end_of_month
-    @post = Post.where('created_at >= ? and created_at <= ? and slug = ?', start_of_month, end_of_month, params[:slug]).first
+    date = Date.parse("#{params[:year]}-#{params[:month]}-#{params[:day]}")
+    @post = Post.where('created_at >= ? and created_at <= ? and slug = ?', date, date + 1.day, params[:slug]).first
   end
 
   def new
