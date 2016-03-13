@@ -4,7 +4,8 @@
 <dom-module id="lemon-post">
   <link rel="stylesheet" href="lemon-post.css" />
   <template>
-    <paper-material id="postMaterial" elevation="3">
+    <iron-media-query query="(max-width: 480px)" query-matches="{{smallScreen}}"></iron-media-query>
+    <paper-material id="postMaterial" elevation$="[[_computeElevation(smallScreen)]]">
       <div class="body">
         <h1><a id="titleTag" href="#">[[title]]</a></h1>
         <content></content>

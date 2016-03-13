@@ -24,12 +24,22 @@ Polymer({
   },
 
   onMouseover: function() {
-    if (!this.summary) return;
+    if (!this.summary || this.smallScreen) return;
     this.$.postMaterial.elevation = 3;
   },
 
   onMouseout: function() {
-    if (!this.summary) return;
+    if (!this.summary || this.smallScreen) return;
     this.$.postMaterial.elevation = 1;
+  },
+
+  _computeElevation: function(smallScreen) {
+    if (smallScreen) {
+      return 0;
+    } else if (this.summary) {
+      return 1;
+    } else {
+      return 3;
+    }
   }
 });
