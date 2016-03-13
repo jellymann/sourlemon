@@ -1,3 +1,6 @@
+//= require codemirror/lib/codemirror
+//= require codemirror/theme/xq-light
+
 @import "variables"
 
 body
@@ -10,6 +13,9 @@ paper-toolbar.primary-color
   paper-icon-button
     color: white
 
+textarea.code-mirror
+  display: none
+
 .main-menu
   a
     color: $primary-text-color
@@ -19,8 +25,14 @@ paper-toolbar.primary-color
       paper-item
         background: $hilight-color
 
+div#drawer
+  z-index: 5000
 
 paper-header-panel.main-header
+
+  #mainPanel
+    #dropShadow
+      z-index: 20
 
   paper-toolbar.toolbar
     position: relative
@@ -63,6 +75,7 @@ paper-header-panel.main-header
   position: fixed
   bottom: 16px
   right: 32px
+  z-index: 100000
 
   > *
     paper-fab
@@ -104,3 +117,7 @@ paper-header-panel.main-header
 
 paper-button.delete
   color: red
+
+.CodeMirror
+  border: 1px solid #eee
+  height: auto

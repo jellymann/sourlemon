@@ -19,6 +19,6 @@ class Post < ApplicationRecord
   private
 
   def markdown
-    @_markdown ||= Redcarpet::Markdown.new(Redcarpet::Render::HTML)
+    @_markdown ||= Redcarpet::Markdown.new(LemonHTMLRenderer)
   end
 end
