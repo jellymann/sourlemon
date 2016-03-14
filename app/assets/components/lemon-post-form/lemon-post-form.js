@@ -28,7 +28,7 @@ Polymer({
 
     var tags = this.$.lemon_post_tags.tags;
     for (var i = 0; i < tags.length; i++) {
-      this.form.appendChild(this._createInputTag(tags[i]));
+      this.form.querySelector('.hidden-form').appendChild(this._createInputTag(tags[i]));
     }
 
     this.form.submit();
