@@ -8,6 +8,8 @@ gem 'uglifier', '>= 1.3.0'
 gem 'slim-rails'
 gem 'polymer-rails'
 
+gem 'rouge'
+
 gem 'jquery-rails'
 
 gem 'devise', '>= 4.0.0.rc1', '< 4.1'

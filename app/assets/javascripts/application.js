@@ -13,33 +13,4 @@
 //= require webcomponentsjs/webcomponents-lite
 //= require jquery
 //= require jquery_ujs
-//= require codemirror/lib/codemirror
-//= require codemirror/mode/xml/xml
-//= require codemirror/mode/javascript/javascript
-//= require codemirror/mode/css/css
-//= require codemirror/mode/htmlmixed/htmlmixed
-//= require codemirror/mode/ruby/ruby
 //= require_tree .
-
-$(function() {
-  $('textarea.code-mirror').each(function() {
-    var textarea = this;
-    var mode = textarea.dataset.mode;
-    var readOnly = textarea.dataset.editable ? false : 'nocursor';
-    var codemirror = CodeMirror.fromTextArea(textarea, {
-      mode: mode || 'htmlmixed',
-      theme: 'xq-light',
-      readOnly: readOnly,
-      lineNumbers: true
-    });
-    textarea.codemirror = codemirror;
-    var refreshCodemirror = function() {
-      codemirror.refresh();
-      var viewport = codemirror.getViewport();
-      if (viewport.to === viewport.from) {
-        setTimeout(refreshCodemirror, 10);
-      }
-    };
-    refreshCodemirror();
-  });
-});
