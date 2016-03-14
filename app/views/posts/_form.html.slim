@@ -2,3 +2,5 @@
   .hidden-form
     = f.text_field :title
     = f.text_area :body
+    - post.tags.each do |tag|
+      = f.text_field 'post[tag][]', value: tag, class: 'tag_field'

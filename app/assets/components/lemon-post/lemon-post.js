@@ -15,6 +15,7 @@ Polymer({
 
   ready: function() {
     this.post = JSON.parse(this.post);
+    this.post.tags.reverse();
     if (this.summary) {
       this.$.postMaterial.animated = true;
       this.$.postMaterial.elevation = 1;

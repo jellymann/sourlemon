@@ -6,20 +6,40 @@
     background: white
     position: relative
 
-    .post-date
-      color: $secondary-text-color
-
-    h1
-      a
-        color: $primary-text-color
-        text-decoration: none
-
-        &:hover
-          border-bottom: 2px dotted $primary-text-color
-
     .body
-      margin: 2rem auto
-      width: 90%
+      margin: 2.5%
+      width: 95%
+
+      @media screen and (min-width: $break-large)
+        width: $post-width-large-inner
+        margin: $post-width-large-margin
+
+      .pre-body
+        display: block
+        height: 1rem
+
+        .post-date
+          color: $secondary-text-color
+          float: left
+          padding: 0.1rem 0
+          margin-bottom: 0.3rem
+
+        .post-tag
+          float: right
+          padding: 0.1rem 0.5rem
+          background: $accent-color
+          color: white
+          border-radius: 2px
+          margin-left: 0.3rem
+          margin-bottom: 0.3rem
+
+      h1
+        a
+          color: $primary-text-color
+          text-decoration: none
+
+          &:hover
+            border-bottom: 2px dotted $primary-text-color
 
     .body-fade
       display: none

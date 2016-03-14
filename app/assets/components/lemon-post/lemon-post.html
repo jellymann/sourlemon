@@ -7,8 +7,13 @@
     <iron-media-query query="(max-width: 480px)" query-matches="{{smallScreen}}"></iron-media-query>
     <paper-material id="postMaterial" elevation$="[[_computeElevation(smallScreen)]]">
       <div class="body">
-        <div class="post-date">[[post.date]]</div>
-        <h1><a id="titleTag" href="[[post.url]]">[[post.title]]</a></h1>
+        <div class="pre-body">
+          <span class="post-date">[[post.date]]</span>
+          <template is="dom-repeat" items="{{post.tags}}" id="tags">
+            <span class="post-tag">{{item}}</span>
+          </template>
+        </div>
+        <h1 class="post-title"><a id="titleTag" href="[[post.url]]">[[post.title]]</a></h1>
         <content></content>
       </div>
       <a id="summaryOverlay" class="body-fade" href$="[[post.url]]">

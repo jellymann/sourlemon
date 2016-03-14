@@ -22,7 +22,8 @@ class Post < ApplicationRecord
     {
       title: title,
       date: display_date,
-      url: slug_url
+      url: slug_url,
+      tags: tags
     }
   end
 
