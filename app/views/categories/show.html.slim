@@ -1,6 +1,6 @@
 = content_for :left_title_buttons do
   paper-icon-button icon="menu" paper-drawer-toggle=true
 
-h1.archive-heading.green Blog Archive
+h1.archive-heading.orange Category "#{@tag}"
 
 = render '/shared/post_listing', posts: @posts

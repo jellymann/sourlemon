@@ -8,5 +8,6 @@ Rails.application.routes.draw do
     month: /\d\d/,
     dat: /\d\d/
 
+  get '/blog/categories/:tag', to: 'categories#show'
   get '/blog/archives', to: 'archives#show'
 end

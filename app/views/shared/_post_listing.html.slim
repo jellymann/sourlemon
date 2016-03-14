@@ -1,0 +1,11 @@
+.archives
+  - posts.each do |(year,posts)|
+    .archive
+      .archive-year= year
+      paper-material.archive-posts
+        - posts.each do |post|
+          = link_to post.slug_url do
+            paper-item.archive-post
+              span.archive-post-date= post.created_at.strftime '%e %b'
+              span.archive-post-title= post.title
+              paper-ripple

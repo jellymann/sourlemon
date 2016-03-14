@@ -10,7 +10,7 @@
         <div class="pre-body">
           <span class="post-date">[[post.date]]</span>
           <template is="dom-repeat" items="{{post.tags}}" id="tags">
-            <span class="post-tag">{{item}}</span>
+            <a class="post-tag" href$="/blog/categories/[[item]]">{{item}}</a>
           </template>
         </div>
         <h1 class="post-title"><a id="titleTag" href="[[post.url]]">[[post.title]]</a></h1>
