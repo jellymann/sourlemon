@@ -2,7 +2,7 @@
   = link_to root_path do
     paper-icon-button icon="arrow-back"
 
-lemon-post title=@post.title url=@post.slug_url date=@post.display_date
+lemon-post post=@post.metadata.to_json
   = @post.body_html
 
 = content_for :fixed do

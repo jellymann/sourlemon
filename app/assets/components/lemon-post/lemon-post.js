@@ -1,13 +1,11 @@
 Polymer({
   is: "lemon-post",
   properties: {
-    title: String,
-    url: String,
+    post: String,
     summary: {
       type: Boolean,
       value: false
-    },
-    date: String
+    }
   },
 
   listeners: {
@@ -16,8 +14,7 @@ Polymer({
   },
 
   ready: function() {
-    this.$.titleTag.href = this.url;
-    this.$.summaryOverlay.href = this.url;
+    this.post = JSON.parse(this.post);
     if (this.summary) {
       this.$.postMaterial.animated = true;
       this.$.postMaterial.elevation = 1;

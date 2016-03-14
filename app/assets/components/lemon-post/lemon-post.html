@@ -7,11 +7,11 @@
     <iron-media-query query="(max-width: 480px)" query-matches="{{smallScreen}}"></iron-media-query>
     <paper-material id="postMaterial" elevation$="[[_computeElevation(smallScreen)]]">
       <div class="body">
-        <div class="post-date">[[date]]</div>
-        <h1><a id="titleTag" href="#">[[title]]</a></h1>
+        <div class="post-date">[[post.date]]</div>
+        <h1><a id="titleTag" href="[[post.url]]">[[post.title]]</a></h1>
         <content></content>
       </div>
-      <a id="summaryOverlay" class="body-fade" href="#">
+      <a id="summaryOverlay" class="body-fade" href$="[[post.url]]">
         <paper-ripple recenters id="ripple"></paper-ripple>
       </a>
     </paper-material>

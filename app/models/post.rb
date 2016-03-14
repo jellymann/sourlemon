@@ -18,6 +18,14 @@ class Post < ApplicationRecord
     created_at.strftime('%d %B %Y')
   end
 
+  def metadata
+    {
+      title: title,
+      date: display_date,
+      url: slug_url
+    }
+  end
+
   private
 
   def markdown
