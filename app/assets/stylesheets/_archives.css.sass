@@ -25,25 +25,15 @@
 
           .archive-post-date
             color: $secondary-text-color
-
-            &.medium
-              width: 120px
-              @media screen and (max-width: $break-small)
-                display: none
-
-            &.small
-              width: 50px
-              @media screen and (min-width: $break-small + 1)
-                display: none
+            width: 60px
+            text-align: right
+            padding-right: 1rem
 
           .archive-post-title
-            width: calc(100% - 120px)
+            width: calc(100% - 100px)
             white-space: nowrap
             text-overflow: ellipsis
             overflow: hidden
-
-            @media screen and (max-width: $break-small)
-              width: calc(100% - 50px)
 
         &:first-child
           .archive-post

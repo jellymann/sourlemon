@@ -6,7 +6,8 @@ Polymer({
     summary: {
       type: Boolean,
       value: false
-    }
+    },
+    date: String
   },
 
   listeners: {

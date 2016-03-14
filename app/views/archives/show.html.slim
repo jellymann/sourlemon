@@ -9,7 +9,6 @@
         - posts.each do |post|
           = link_to post.slug_url do
             paper-item.archive-post
-              span.archive-post-date.medium= post.created_at.strftime '%B %d'
-              span.archive-post-date.small= post.created_at.strftime '%m/%d'
+              span.archive-post-date= post.created_at.strftime '%e %b'
               span.archive-post-title= post.title
               paper-ripple

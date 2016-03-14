@@ -14,6 +14,10 @@ class Post < ApplicationRecord
     end
   end
 
+  def display_date
+    created_at.strftime('%d %B %Y')
+  end
+
   private
 
   def markdown

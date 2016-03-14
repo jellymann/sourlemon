@@ -2,7 +2,7 @@
   paper-icon-button icon="menu" paper-drawer-toggle=true
 
 - @posts.each do |post|
-  lemon-post title=post.title url=post.slug_url summary=true
+  lemon-post title=post.title url=post.slug_url summary=true date=post.display_date
     = post.body_html
 
 = content_for :fixed do
