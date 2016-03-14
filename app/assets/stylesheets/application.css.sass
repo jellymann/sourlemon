@@ -1,15 +1,20 @@
 @import "variables"
 @import "code"
+@import "archives"
 
 body
   font-family: 'Roboto', 'Noto', sans-serif
   color: $primary-text-color
+  background: $background-color
 
 paper-toolbar.primary-color
   background: $primary-color
 
   paper-icon-button
     color: white
+
+paper-material
+  background-color: white
 
 textarea.code-mirror
   display: none
@@ -80,25 +85,25 @@ paper-header-panel.main-header
     &.purple
       background: #673AB7
 
-#mainContainer
-  background: white
-
 .content
   height: 100%
-  position: relative
+  position: absolute
+  left: 5%
+  width: 90%
+  font-size: 14px
+  line-height: 1.428571429
 
-  .posts
-    width: 90%
-    margin: 0 auto
+  @media screen and (max-width: $break-small)
+    width: 100%
+    left: 0
 
-    @media screen and (max-width: $break-small)
-      width: 100%
+  @media screen and (min-width: $break-large)
+    width: $post-width-large
+    left: 50%
+    margin-left: -$post-width-large-half
 
-    @media screen and (min-width: $break-large)
-      width: $post-width-large
-
-  .post-form
-    padding: 1rem
+  paper-material
+    overflow-x: hidden
 
 .hidden-form
   visibility: hidden

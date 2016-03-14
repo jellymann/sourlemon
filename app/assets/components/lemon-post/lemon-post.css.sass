@@ -2,10 +2,12 @@
 
 \:host
   paper-material
+    min-height: 100%
     background: white
     position: relative
-    margin-bottom: 1rem
-    padding-bottom: 1rem
+
+    @media screen and (max-width: $break-small)
+      height: 100%
 
     h1
       a
@@ -16,21 +18,28 @@
           border-bottom: 2px dotted $primary-text-color
 
     .body
-      padding: 0.5rem
-      // font-family: "Helvetica Neue",Helvetica,Arial,sans-serif
-      font-size: 14px
-      line-height: 1.428571429
       margin: 0 auto
       width: 90%
 
     .body-fade
       display: none
 
+  &:last-child
+    paper-material
+      border-bottom: none
+
   &[summary]
     paper-material
+      height: 300px
+      min-height: 300px
       max-height: 300px
-      overflow: hidden
       cursor: pointer
+      overflow: hidden
+      margin-bottom: 1rem
+
+      @media screen and (max-width: $break-small)
+        margin-bottom: 0
+        border-bottom: 1px solid $divider-color
 
       .body-fade
         display: block
@@ -46,13 +55,3 @@
 
         paper-ripple
           color: black
-
-@media screen and (max-width: $break-small)
-  \:host
-    paper-material
-      margin-bottom: 0
-      border-bottom: 1px solid $divider-color
-
-    &:last-child
-      paper-material
-        border-bottom: none

@@ -1,0 +1,58 @@
+.archives
+  font-size: 14px
+  padding-top: 1rem
+  width: 90%
+  margin: 0 auto
+
+  @media screen and (max-width: $break-small)
+    width: 100%
+
+  @media screen and (min-width: $break-large)
+    width: $post-width-large
+
+  .archive
+    .archive-year
+      color: $secondary-text-color
+      padding-left: 1rem
+
+    paper-material.archive-posts
+      width: 100%
+      margin: 0.5rem 0 1rem 0
+      padding: 0
+
+      a
+        text-decoration: none
+        color: $primary-text-color
+        width: 100%
+        height: 100%
+
+        .archive-post
+          border-top: 1px solid $divider-color
+
+          .archive-post-date
+            color: $secondary-text-color
+
+            &.medium
+              width: 120px
+              @media screen and (max-width: $break-small)
+                display: none
+
+            &.small
+              width: 50px
+              @media screen and (min-width: $break-small + 1)
+                display: none
+
+
+
+          .archive-post-title
+            width: calc(100% - 120px)
+            white-space: nowrap
+            text-overflow: ellipsis
+            overflow: hidden
+
+            @media screen and (max-width: $break-small)
+              width: calc(100% - 50px)
+
+        &:first-child
+          .archive-post
+            border-top: none

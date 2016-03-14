@@ -2,9 +2,8 @@
   = link_to root_path do
     paper-icon-button icon="arrow-back"
 
-.posts
-  lemon-post title=@post.title url=@post.slug_url
-    = @post.body_html
+lemon-post title=@post.title url=@post.slug_url
+  = @post.body_html
 
 = content_for :fixed do
   - if user_signed_in?

@@ -1,10 +1,9 @@
 = content_for :left_title_buttons do
   paper-icon-button icon="menu" paper-drawer-toggle=true
 
-.posts#postsList
-  - @posts.each do |post|
-    lemon-post title=post.title url=post.slug_url summary=true
-      = post.body_html
+- @posts.each do |post|
+  lemon-post title=post.title url=post.slug_url summary=true
+    = post.body_html
 
 = content_for :fixed do
   - if user_signed_in?

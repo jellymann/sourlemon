@@ -1,0 +1,15 @@
+= content_for :left_title_buttons do
+  paper-icon-button icon="menu" paper-drawer-toggle=true
+
+.archives
+  - @posts.each do |(year,posts)|
+    .archive
+      .archive-year= year
+      paper-material.archive-posts
+        - posts.each do |post|
+          = link_to post.slug_url do
+            paper-item.archive-post
+              span.archive-post-date.medium= post.created_at.strftime '%B %d'
+              span.archive-post-date.small= post.created_at.strftime '%m/%d'
+              span.archive-post-title= post.title
+              paper-ripple

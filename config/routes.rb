@@ -7,4 +7,6 @@ Rails.application.routes.draw do
     year: /\d\d\d\d/,
     month: /\d\d/,
     dat: /\d\d/
+
+  get '/blog/archives', to: 'archives#show'
 end
