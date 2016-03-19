@@ -55,6 +55,8 @@ GEM
     ffi (1.9.10)
     globalid (0.3.6)
       activesupport (>= 4.1.0)
+    heroku-deflater (0.6.2)
+      rack (>= 1.4.5)
     i18n (0.7.0)
     jquery-rails (4.1.0)
       rails-dom-testing (~> 1.0)
@@ -109,6 +111,11 @@ GEM
       rails-deprecated_sanitizer (>= 1.0.1)
     rails-html-sanitizer (1.0.3)
       loofah (~> 2.0)
+    rails_12factor (0.0.3)
+      rails_serve_static_assets
+      rails_stdout_logging
+    rails_serve_static_assets (0.0.5)
+    rails_stdout_logging (0.0.4)
     railties (5.0.0.beta3)
       actionpack (= 5.0.0.beta3)
       activesupport (= 5.0.0.beta3)
@@ -175,12 +182,14 @@ PLATFORMS
 DEPENDENCIES
   byebug
   devise (>= 4.0.0.rc1, < 4.1)
+  heroku-deflater
   jquery-rails
   listen (~> 3.0.5)
   pg
   polymer-rails
   puma
   rails (>= 5.0.0.beta3, < 5.1)
+  rails_12factor
   redcarpet
   rouge
   sass-rails (~> 5.0)
