@@ -5,7 +5,7 @@ html
     title Sour Lemon
     = csrf_meta_tags
 
-    style= Rails.application.assets["application-inline.css"].to_s
+    style= ::Sprockets::Railtie.build_environment(Rails.application)["application-inline.css"].to_s
     = javascript_include_tag 'application', async: true
     = html_import_tag 'application'
 
@@ -42,4 +42,4 @@ html
     .fixed
       = yield :fixed
 
-    script= Rails.application.assets["application-load.js"].to_s.html_safe
+    script= ::Sprockets::Railtie.build_environment(Rails.application)["application-load.js"].to_s.html_safe
