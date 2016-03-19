@@ -11,6 +11,4 @@
 // about supported directives.
 //
 //= require webcomponentsjs/webcomponents-lite
-//= require jquery
-//= require jquery_ujs
 //= require_tree .
