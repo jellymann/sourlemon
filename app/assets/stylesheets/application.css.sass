@@ -7,27 +7,6 @@
 //   -moz-box-sizing: border-box
 //   -webkit-box-sizing: border-box
 
-div
-  margin: 0
-  padding: 0
-
-body
-  font-family: 'Roboto', 'Noto', sans-serif
-  color: $primary-text-color
-  background: $background-color
-
-paper-toolbar.primary-color
-  background: $primary-color
-
-  paper-icon-button
-    color: white
-
-paper-material
-  background-color: white
-
-textarea.code-mirror
-  display: none
-
 .main-menu
   a
     color: $primary-text-color
@@ -36,44 +15,6 @@ textarea.code-mirror
     &.current, &:hover
       paper-item
         background: $hilight-color
-
-paper-header-panel.main-header
-  paper-toolbar.toolbar
-    position: relative
-
-    .header-logo
-      position: absolute
-      top: 0
-      left: 0
-      right: 0
-      height: 100%
-      background: transparent
-
-      h1
-        text-align: center
-        padding: 0
-        margin-top: 16px
-        font-family: monospace
-
-        a
-          color: white
-          text-decoration: none
-
-          &:hover
-            border-bottom: 2px dotted white
-
-        @media screen and (max-width: $break-medium)
-          margin-top: 12px
-
-      h1.normal-logo
-        display: block
-        @media screen and (max-width: $break-small)
-          display: none
-
-      h1.small-logo
-        display: none
-        @media screen and (max-width: $break-small)
-          display: block
 
 .fixed
   position: fixed
@@ -93,26 +34,6 @@ paper-header-panel.main-header
       background: $accent-color
     &.purple
       background: #673AB7
-
-.content
-  height: 100%
-  position: absolute
-  left: 5%
-  width: 90%
-  font-size: 14px
-  line-height: 1.428571429
-
-  @media screen and (max-width: $break-small)
-    width: 100%
-    left: 0
-
-  @media screen and (min-width: $break-large)
-    width: $post-width-large
-    left: 50%
-    margin-left: -$post-width-large-half
-
-  paper-material
-    overflow-x: hidden
 
 .hidden-form
   visibility: hidden

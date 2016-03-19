@@ -5,7 +5,7 @@ html
     title Sour Lemon
     = csrf_meta_tags
 
-    = stylesheet_link_tag    'application', media: 'all'
+    style= Rails.application.assets["application-inline.css"].to_s
     = javascript_include_tag 'application', async: true
     = html_import_tag 'application'
 
@@ -41,3 +41,5 @@ html
 
     .fixed
       = yield :fixed
+
+    script= Rails.application.assets["application-load.js"].to_s.html_safe

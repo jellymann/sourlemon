@@ -1,0 +1,77 @@
+@import "variables"
+
+div
+  margin: 0
+  padding: 0
+
+body
+  font-family: 'Roboto', 'Noto', sans-serif
+  color: $primary-text-color
+  background: $background-color
+
+paper-toolbar.primary-color
+  background: $primary-color
+
+  paper-icon-button
+    color: white
+
+paper-material
+  background-color: white
+
+.content
+  height: 100%
+  position: absolute
+  left: 5%
+  width: 90%
+  font-size: 14px
+  line-height: 1.428571429
+
+  @media screen and (max-width: $break-small)
+    width: 100%
+    left: 0
+
+  @media screen and (min-width: $break-large)
+    width: $post-width-large
+    left: 50%
+    margin-left: -$post-width-large-half
+
+  paper-material
+    overflow-x: hidden
+
+paper-header-panel.main-header
+  paper-toolbar.toolbar
+    position: relative
+
+    .header-logo
+      position: absolute
+      top: 0
+      left: 0
+      right: 0
+      height: 100%
+      background: transparent
+
+      h1
+        text-align: center
+        padding: 0
+        margin-top: 16px
+        font-family: monospace
+
+        a
+          color: white
+          text-decoration: none
+
+          &:hover
+            border-bottom: 2px dotted white
+
+        @media screen and (max-width: $break-medium)
+          margin-top: 12px
+
+      h1.normal-logo
+        display: block
+        @media screen and (max-width: $break-small)
+          display: none
+
+      h1.small-logo
+        display: none
+        @media screen and (max-width: $break-small)
+          display: block
