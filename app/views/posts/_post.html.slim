@@ -1,0 +1,12 @@
+.post class=(summary ? 'post-summary' : '')
+  .pre-body
+    span.post-date= post.display_date
+    - post.tags.each do |tag|
+      = link_to tag, "/blog/categories/#{tag}", class: 'post-tag'
+
+  .body
+    h1= link_to post.title, post.slug_url
+    = post.body_html
+
+  - if summary
+    = link_to '', post.slug_url, class: 'body-fade'

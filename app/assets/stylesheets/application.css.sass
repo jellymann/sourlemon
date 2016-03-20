@@ -1,43 +1,21 @@
+@import "bourbon"
 @import "variables"
 @import "code"
 @import "archives"
+@import "typography"
+@import "header"
+@import "nav"
+@import "posts"
 
-// *
-//   box-sizing: border-box
-//   -moz-box-sizing: border-box
-//   -webkit-box-sizing: border-box
+.lemon-post-form
+  background: white
+  padding: 1rem
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2)
 
-.main-menu
-  a
-    color: $primary-text-color
-    text-decoration: none
+  label
+    width: 100%
 
-    &.current, &:hover
-      paper-item
-        background: $hilight-color
-
-.fixed
-  position: fixed
-  bottom: 16px
-  right: 32px
-
-  > *
-    paper-fab
-      margin-bottom: 20px
-
-    &:last-child
-      paper-fab
-        margin-bottom: 0
-
-  paper-fab
-    &.orange
-      background: $accent-color
-    &.purple
-      background: #673AB7
-
-.hidden-form
-  visibility: hidden
-  position: absolute
-
-paper-button.delete
-  color: red
+  input[type="text"], textarea
+    width: 100%
+    max-width: 100%
+    margin-bottom: 1rem
