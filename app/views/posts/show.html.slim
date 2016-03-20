@@ -2,8 +2,4 @@
   = ::Sprockets::Railtie.build_environment(Rails.application)["posts-show-inline.css"].to_s
 
 .lemon-post
-  - if user_signed_in?
-    .admin-buttons
-      = button_to 'Edit', edit_post_path(@post), method: :get
-      = button_to 'Delete', post_path(@post), method: :delete
   = render 'post', post: @post, summary: false

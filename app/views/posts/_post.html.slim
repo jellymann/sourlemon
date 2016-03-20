@@ -6,6 +6,10 @@
 
   .body
     h1= link_to post.title, post.slug_url
+    - if user_signed_in? && !summary
+      .admin-buttons
+        = button_to 'Edit', edit_post_path(post), method: :get
+        = button_to 'Delete', post_path(post), method: :delete
     = post.body_html
 
   - if summary

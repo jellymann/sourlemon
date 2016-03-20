@@ -17,18 +17,21 @@ html
         .alert= alert
 
     header
+      a.hamburger href="#" onclick="toggleMenu()"
+        span
       .logo.normal-logo
         = link_to 'Sour {>.<} Lemon', root_path
       .logo.small-logo
         = link_to '{>.<}', root_path
 
     nav
-      ul
-        li= link_to 'Blog', root_path, class: current_page?(root_path) ? 'current' : ''
-        li= link_to 'Archives', blog_archives_path, class: current_page?(blog_archives_path) ? 'current' : ''
-        - if user_signed_in?
-          li= link_to 'New Post', new_post_path
-          li= link_to 'Sign Out', destroy_user_session_path, :method => :delete
+      = link_to 'Blog', root_path, class: current_page?(root_path) ? 'current' : ''
+      = link_to 'Archives', blog_archives_path, class: current_page?(blog_archives_path) ? 'current' : ''
+      - if user_signed_in?
+        = link_to 'New Post', new_post_path
+        = link_to 'Sign Out', destroy_user_session_path, :method => :delete
+
+    .overlay onclick="toggleMenu()"
 
     .content
       = yield
