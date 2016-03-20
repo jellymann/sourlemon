@@ -18,6 +18,10 @@ class Post < ApplicationRecord
     created_at.strftime('%d %B %Y')
   end
 
+  def short_display_date
+    created_at.strftime("%e %b '%y")
+  end
+
   def tags_csv
     tags.join(', ')
   end

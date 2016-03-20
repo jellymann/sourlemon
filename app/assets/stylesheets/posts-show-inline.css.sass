@@ -3,7 +3,7 @@
 
 .post
   position: relative
-  padding: 5%
+  padding: 1rem 5%
   margin: 1rem 0
   background: white
   font-size: 14px
@@ -18,16 +18,27 @@
     .post-date
       float: left
       color: $secondary-text-color
-      padding: 0.3rem 0
+      padding: 0.1rem 0
+      margin-bottom: 0.1rem
+
+      &.small-date
+        display: none
+      &.normal-date
+        display: block
+
+      @media screen and (max-width: $break-small)
+        &.small-date
+          display: block
+        &.normal-date
+          display: none
 
     .post-tag
       float: right
       background: $accent-color
       color: white
-      padding: 0.3rem 0.5rem
-
-      &+.post-tag
-        margin-right: 0.5rem
+      padding: 0.1rem 0.3rem
+      margin-bottom: 0.1rem
+      margin-left: 0.3rem
 
   pre
     background-color: #f8f8f8

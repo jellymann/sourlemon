@@ -9,7 +9,9 @@ function toggleMenu() {
 
   if (isOpening) {
     overlay.style.zIndex = "1000";
+    overlay.onclick = toggleMenu;
   } else {
+    overlay.onclick = null;
     setTimeout(function() {
       overlay.style.zIndex = "0";
     }, 230);

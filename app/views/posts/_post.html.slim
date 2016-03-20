@@ -1,6 +1,7 @@
 .post class=(summary ? 'post-summary' : '')
   .pre-body
-    span.post-date= post.display_date
+    span.post-date.normal-date= post.display_date
+    span.post-date.small-date= post.short_display_date
     - post.tags.each do |tag|
       = link_to tag, "/blog/categories/#{tag}", class: 'post-tag'
 
