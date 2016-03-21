@@ -1,8 +1,8 @@
 function toggleMenu() {
-  var nav = document.getElementsByTagName("nav")[0];
+  var nav = document.getElementById("main-menu");
   nav.classList.toggle("open");
 
-  var overlay = document.getElementsByClassName("overlay")[0];
+  var overlay = document.getElementById("overlay");
   overlay.classList.toggle("open");
 
   var isOpening = overlay.classList.contains("open");

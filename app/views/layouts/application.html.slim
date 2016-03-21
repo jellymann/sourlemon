@@ -5,13 +5,14 @@ html
     title Sour Lemon
     = csrf_meta_tags
 
-    style
+    style#main-critical-css data-turbolinks-permanent=true
       = ::Sprockets::Railtie.build_environment(Rails.application)["application-inline.css"].to_s
+    style#page-critical-css
       = yield :critical_css
 
   body
 
-    header data-turbolinks-permanent=true
+    header#main-header data-turbolinks-permanent=true
       .hamburger onclick="toggleMenu()"
         span
       .logo.normal-logo
@@ -25,16 +26,16 @@ html
       - if alert
         .alert= alert
 
-    nav data-turbolinks-permanent=true onclick="toggleMenu()"
+    nav#main-menu data-turbolinks-permanent=true onclick="toggleMenu()"
       = link_to 'Blog', root_path, class: current_page?(root_path) ? 'current' : ''
       = link_to 'Archives', blog_archives_path, class: current_page?(blog_archives_path) ? 'current' : ''
       - if user_signed_in?
         = link_to 'New Post', new_post_path
-        = link_to 'Sign Out', destroy_user_session_path, :method => :delete
+        = button_to 'Sign Out', destroy_user_session_path, :method => :delete
 
-    .overlay data-turbolinks-permanent=true
+    .overlay#overlay data-turbolinks-permanent=true
 
-    .content
+    .content#content
       = yield
 
     javascript:
@@ -49,4 +50,5 @@ html
           webkitRequestAnimationFrame || msRequestAnimationFrame;
       if (raf) raf(cb);
       else window.addEventListener('load', cb);
-    = javascript_include_tag 'application'
+
+    = javascript_include_tag 'application', 'data-turbolinks-track' => 'reload'
