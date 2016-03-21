@@ -4,9 +4,22 @@
 @import "archives"
 @import "typography"
 @import "hamburger"
+@import "loading"
 @import "header"
 @import "nav"
 @import "posts"
+
+#flash
+  .notice, .alert
+    padding: 0.3rem
+    text-align: center
+    color: white
+
+  .notice
+    background-color: $dark-primary-color
+
+  .alert
+    background: $accent-color
 
 .lemon-post-form
   background: white
@@ -20,3 +33,6 @@
     width: 100%
     max-width: 100%
     margin-bottom: 1rem
+
+#content
+  transition: opacity $transition-time

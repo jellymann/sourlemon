@@ -9,12 +9,12 @@ html.css-loaded
     bottom: 0
     width: $menu-width
     background: white
-    z-index: 10000
+    z-index: 210
 
     background: white
     color: $primary-text-color
 
-    transition: left 0.23s
+    transition: left $transition-time
 
     @media screen and (max-width: $break-small)
       width: 100%
@@ -24,17 +24,22 @@ html.css-loaded
       left: 0
       box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2)
 
-    a
+    a, button, input[type="submit"]
+      background: white
       display: block
       padding: 1rem
       margin: 0
       width: 100%
+      font-size: 1rem
+      text-align: left
+      border: none
       border-bottom: 1px solid $divider-color
+      cursor: pointer
 
       &:hover
         background: $divider-color
 
-  .overlay
+  #overlay
     display: block
     position: fixed
     left: 0
@@ -43,7 +48,7 @@ html.css-loaded
     bottom: 0
     background-color: black
     opacity: 0
-    transition: opacity 0.23s
+    transition: opacity $transition-time
 
     &.open
       opacity: 0.5

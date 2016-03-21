@@ -1,39 +1,44 @@
 doctype html
 html
   head
-    meta name="viewport" content="width=device-width; initial-scale=1.0"
+    meta name="viewport" content="width=device-width, initial-scale=1.0"
     title Sour Lemon
     = csrf_meta_tags
 
-    style
+    style#main-critical-css data-turbolinks-permanent=true
       = ::Sprockets::Railtie.build_environment(Rails.application)["application-inline.css"].to_s
+    style#page-critical-css
       = yield :critical_css
 
   body
-    #flash
-      - if notice
-        .notice= notice
-      - if alert
-        .alert= alert
 
-    header
-      a.hamburger href="#" onclick="toggleMenu()"
+    header#main-header data-turbolinks-permanent=true
+      .hamburger onclick="toggleMenu()"
         span
       .logo.normal-logo
         = link_to 'Sour {>.<} Lemon', root_path
       .logo.small-logo
         = link_to '{>.<}', root_path
 
-    nav
+    #flash
+      - if notice
+        .notice= notice
+      - if alert
+        .alert= alert
+
+    nav#main-menu data-turbolinks-permanent=true
       = link_to 'Blog', root_path, class: current_page?(root_path) ? 'current' : ''
       = link_to 'Archives', blog_archives_path, class: current_page?(blog_archives_path) ? 'current' : ''
       - if user_signed_in?
         = link_to 'New Post', new_post_path
-        = link_to 'Sign Out', destroy_user_session_path, :method => :delete
+        = button_to 'Sign Out', destroy_user_session_path, :method => :delete
 
-    .overlay
+    #overlay data-turbolinks-permanent=true
+    #loading-overlay
+      .small.progress
+        div Loading…
 
-    .content
+    .content#content
       = yield
 
     javascript:
@@ -48,4 +53,5 @@ html
           webkitRequestAnimationFrame || msRequestAnimationFrame;
       if (raf) raf(cb);
       else window.addEventListener('load', cb);
-    = javascript_include_tag 'application'
+
+    = javascript_include_tag 'application', 'data-turbolinks-track' => 'reload'
