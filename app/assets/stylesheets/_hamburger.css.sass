@@ -1,0 +1,27 @@
+.hamburger
+  position: absolute
+  left: 20px
+  top: 13px
+  width: 24px
+  height: 24px
+  z-index: 12000
+
+  span
+    top: 10px
+
+  span,
+  span:before,
+  span:after
+    border-radius: 1px
+    height: 3px
+    width: 24px
+    background: white
+    position: absolute
+    display: block
+    content: ''
+
+  span:before
+    top: -7px
+
+  span:after
+    bottom: -7px

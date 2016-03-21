@@ -1,0 +1,61 @@
+@import "bourbon"
+@import "variables"
+
+.archive-heading
+  padding-left: 1rem
+  font-size: 24px
+  font-weight: 500
+  margin-top: 2rem
+
+  &.green
+    color: green
+
+  &.blue
+    color: blue
+
+  &.orange
+    color: $accent-color
+
+.archives
+  width: 100%
+
+  .archive
+    width: 100%
+
+    .archive-year
+      color: $secondary-text-color
+      padding-left: 1rem
+
+    .archive-posts
+      background: white
+      width: 100%
+      margin: 0.5rem 0 1rem 0
+      padding: 0
+
+      .archive-post
+        display: block
+        color: $primary-text-color
+        border-bottom: 1px solid rgba(0, 0, 0, 0.2)
+        overflow: hidden
+        white-space: nowrap
+        padding: 1rem
+        position: relative
+
+        &:last-child
+          border-bottom: none
+
+        .archive-post-date
+          display: inline-block
+          color: $secondary-text-color
+          padding-right: 1rem
+          width: 60px
+
+        .archive-post-title
+          display: inline-block
+
+        a.archive-overlay
+          position: absolute
+          left: 0
+          right: 0
+          top: 0
+          bottom: 0

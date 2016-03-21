@@ -18,13 +18,16 @@ class Post < ApplicationRecord
     created_at.strftime('%d %B %Y')
   end
 
-  def metadata
-    {
-      title: title,
-      date: display_date,
-      url: slug_url,
-      tags: tags
-    }
+  def short_display_date
+    created_at.strftime("%e %b '%y")
+  end
+
+  def tags_csv
+    tags.join(', ')
+  end
+
+  def tags_csv=(tags)
+    tags = tags.split(',').map(&:strip)
   end
 
   private

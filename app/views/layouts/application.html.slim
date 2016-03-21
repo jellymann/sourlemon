@@ -5,50 +5,47 @@ html
     title Sour Lemon
     = csrf_meta_tags
 
-    style= ::Sprockets::Railtie.build_environment(Rails.application)["application-inline.css"].to_s
-    = javascript_include_tag 'application', async: true
-    = html_import_tag 'application'
+    style
+      = ::Sprockets::Railtie.build_environment(Rails.application)["application-inline.css"].to_s
+      = yield :critical_css
 
-  body.fullbleed.layout.vertical
-    paper-drawer-panel.flex#drawerPanel force-narrow=true
-      paper-header-panel drawer=true
-        paper-toolbar.primary-color
-          paper-icon-button icon="menu" paper-drawer-toggle=true
+  body
+    #flash
+      - if notice
+        .notice= notice
+      - if alert
+        .alert= alert
 
-        .main-menu role="listbox"
-          = link_to root_path, class: current_page?(root_path) ? 'current' : '' do
-            paper-item Blog
-          = link_to blog_archives_path, class: current_page?(blog_archives_path) ? 'current' : '' do
-            paper-item Archive
+    header
+      a.hamburger href="#" onclick="toggleMenu()"
+        span
+      .logo.normal-logo
+        = link_to 'Sour {>.<} Lemon', root_path
+      .logo.small-logo
+        = link_to '{>.<}', root_path
 
-      paper-header-panel.flex.main-header main=true
-        paper-toolbar.primary-color.toolbar
-          .header-logo
-            h1.normal-logo
-              = link_to 'Sour {>.<} Lemon', root_path
-            h1.small-logo
-              = link_to '{>.<}', root_path
-          = yield :left_title_buttons
-          span.title
-          - if user_signed_in?
-            = link_to destroy_user_session_path, :method => :delete do
-              paper-icon-button icon="power-settings-new"
-        .content
-          = yield
+    nav
+      = link_to 'Blog', root_path, class: current_page?(root_path) ? 'current' : ''
+      = link_to 'Archives', blog_archives_path, class: current_page?(blog_archives_path) ? 'current' : ''
+      - if user_signed_in?
+        = link_to 'New Post', new_post_path
+        = link_to 'Sign Out', destroy_user_session_path, :method => :delete
 
-    - if alert || notice
-      paper-toast text=(alert||notice) opened=true
+    .overlay
 
-    .fixed
-      = yield :fixed
+    .content
+      = yield
 
     javascript:
       var cb = function() {
         var l = document.createElement('link'); l.rel = 'stylesheet';
         l.href = "#{ asset_path 'application.css' }";
         var h = document.getElementsByTagName('head')[0]; h.parentNode.insertBefore(l, h);
+        var root = document.documentElement;
+        root.className += ' css-loaded';
       };
       var raf = requestAnimationFrame || mozRequestAnimationFrame ||
           webkitRequestAnimationFrame || msRequestAnimationFrame;
       if (raf) raf(cb);
       else window.addEventListener('load', cb);
+    = javascript_include_tag 'application'

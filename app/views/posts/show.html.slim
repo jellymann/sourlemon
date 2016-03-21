@@ -1,11 +1,5 @@
-= content_for :left_title_buttons do
-  = link_to root_path do
-    paper-icon-button icon="arrow-back"
+= content_for :critical_css do
+  = ::Sprockets::Railtie.build_environment(Rails.application)["posts-show-inline.css"].to_s
 
-lemon-post post=@post.metadata.to_json
-  = @post.body_html
-
-= content_for :fixed do
-  - if user_signed_in?
-    = link_to edit_post_path(@post) do
-      paper-fab.orange icon="create"
+.lemon-post
+  = render 'post', post: @post, summary: false

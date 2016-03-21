@@ -1,0 +1,17 @@
+@import "posts-show-inline"
+
+.post
+  &.post-summary
+    max-height: 300px
+    overflow: hidden
+
+    @media screen and (max-width: $break-small)
+      border-bottom: 1px solid $divider-color
+
+    .body-fade
+      position: absolute
+      top: 3rem
+      left: 0
+      bottom: 0
+      right: 0
+      @include background-image(linear-gradient(to bottom, rgba(255,255,255,0), rgba(255,255,255,1)))

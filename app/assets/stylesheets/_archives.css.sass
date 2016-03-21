@@ -1,54 +1,19 @@
-.archive-heading
-  padding-left: 1rem
-  font-size: 24px
-  font-weight: 500
-  margin-top: 2rem
-
-  &.green
-    color: green
-
-  &.blue
-    color: blue
-
-  &.orange
-    color: $accent-color
-
 .archives
-  font-size: 14px
-  padding-top: 1rem
-  width: 100%
-  margin: 0 auto
-
   .archive
     .archive-year
-      color: $secondary-text-color
-      padding-left: 1rem
+    .archive-posts
+      box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2)
 
-    paper-material.archive-posts
-      width: 100%
-      margin: 0.5rem 0 1rem 0
-      padding: 0
+      .archive-post
+        transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1), border 0.29s cubic-bezier(0.4, 0, 0.2, 1)
 
-      a
-        text-decoration: none
-        color: $primary-text-color
-        width: 100%
-        height: 100%
+        &:hover
+          box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.4)
+          border-bottom: 1px solid rgba(0, 0, 0, 0)
+          z-index: 100
 
-        .archive-post
-          border-top: 1px solid $divider-color
+        &:last-child:hover
+          border-bottom: none
 
-          .archive-post-date
-            color: $secondary-text-color
-            width: 60px
-            padding-right: 1rem
-
-          .archive-post-title
-            width: calc(100% - 100px)
-            white-space: nowrap
-            text-overflow: ellipsis
-            overflow: hidden
-
-        &:first-child
-          .archive-post
-            border-top: none
+        a.archive-overlay
+          @include background-image(linear-gradient(to left, rgba(255,255,255,1) 0%, rgba(255,255,255,0) 30%, rgba(255,255,255,0) 100%))

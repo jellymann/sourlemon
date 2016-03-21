@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby '2.3.0'
+
 gem 'rails', '>= 5.0.0.beta3', '< 5.1'
 gem 'pg'
 gem 'puma'
@@ -7,12 +9,12 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'slim-rails'
 
-gem 'polymer-rails'
-
 gem 'devise', '>= 4.0.0.rc1', '< 4.1'
 gem 'redcarpet'
 
 gem 'rouge'
+
+gem 'bourbon'
 
 group :development, :test do
   gem 'byebug'

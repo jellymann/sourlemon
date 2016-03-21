@@ -1,0 +1,17 @@
+.post class=(summary ? 'post-summary' : '')
+  .pre-body
+    span.post-date.normal-date= post.display_date
+    span.post-date.small-date= post.short_display_date
+    - post.tags.each do |tag|
+      = link_to tag, "/blog/categories/#{tag}", class: 'post-tag'
+
+  .body
+    h1= link_to post.title, post.slug_url
+    - if user_signed_in? && !summary
+      .admin-buttons
+        = button_to 'Edit', edit_post_path(post), method: :get
+        = button_to 'Delete', post_path(post), method: :delete
+    = post.body_html
+
+  - if summary
+    = link_to '', post.slug_url, class: 'body-fade'

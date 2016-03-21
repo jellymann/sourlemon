@@ -1,5 +1,5 @@
-= content_for :left_title_buttons do
-  paper-icon-button icon="menu" paper-drawer-toggle=true
+= content_for :critical_css do
+  = ::Sprockets::Railtie.build_environment(Rails.application)["post-listing-inline.css"].to_s
 
 h1.archive-heading.green Blog Archive
 
