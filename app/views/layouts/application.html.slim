@@ -1,7 +1,7 @@
 doctype html
 html
   head
-    meta name="viewport" content="width=device-width; initial-scale=1.0"
+    meta name="viewport" content="width=device-width, initial-scale=1.0"
     title Sour Lemon
     = csrf_meta_tags
 
@@ -16,7 +16,7 @@ html
       - if alert
         .alert= alert
 
-    header
+    header data-turbolinks-permanent=true
       .hamburger onclick="toggleMenu()"
         span
       .logo.normal-logo
@@ -24,14 +24,14 @@ html
       .logo.small-logo
         = link_to '{>.<}', root_path
 
-    nav
+    nav data-turbolinks-permanent=true onclick="toggleMenu()"
       = link_to 'Blog', root_path, class: current_page?(root_path) ? 'current' : ''
       = link_to 'Archives', blog_archives_path, class: current_page?(blog_archives_path) ? 'current' : ''
       - if user_signed_in?
         = link_to 'New Post', new_post_path
         = link_to 'Sign Out', destroy_user_session_path, :method => :delete
 
-    .overlay
+    .overlay data-turbolinks-permanent=true
 
     .content
       = yield
