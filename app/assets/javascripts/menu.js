@@ -8,7 +8,7 @@ function toggleMenu() {
   var isOpening = overlay.classList.contains("open");
 
   if (isOpening) {
-    overlay.style.zIndex = "1000";
+    overlay.style.zIndex = "200";
     overlay.onclick = toggleMenu;
   } else {
     overlay.onclick = null;
