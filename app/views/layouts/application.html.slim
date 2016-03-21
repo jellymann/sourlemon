@@ -10,11 +10,6 @@ html
       = yield :critical_css
 
   body
-    #flash
-      - if notice
-        .notice= notice
-      - if alert
-        .alert= alert
 
     header data-turbolinks-permanent=true
       .hamburger onclick="toggleMenu()"
@@ -23,6 +18,12 @@ html
         = link_to 'Sour {>.<} Lemon', root_path
       .logo.small-logo
         = link_to '{>.<}', root_path
+
+    #flash
+      - if notice
+        .notice= notice
+      - if alert
+        .alert= alert
 
     nav data-turbolinks-permanent=true onclick="toggleMenu()"
       = link_to 'Blog', root_path, class: current_page?(root_path) ? 'current' : ''
