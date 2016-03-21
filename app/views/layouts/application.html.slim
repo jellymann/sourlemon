@@ -26,14 +26,17 @@ html
       - if alert
         .alert= alert
 
-    nav#main-menu data-turbolinks-permanent=true onclick="toggleMenu()"
+    nav#main-menu data-turbolinks-permanent=true
       = link_to 'Blog', root_path, class: current_page?(root_path) ? 'current' : ''
       = link_to 'Archives', blog_archives_path, class: current_page?(blog_archives_path) ? 'current' : ''
       - if user_signed_in?
         = link_to 'New Post', new_post_path
         = button_to 'Sign Out', destroy_user_session_path, :method => :delete
 
-    .overlay#overlay data-turbolinks-permanent=true
+    #overlay data-turbolinks-permanent=true
+    #loading-overlay
+      .small.progress
+        div Loading…
 
     .content#content
       = yield
