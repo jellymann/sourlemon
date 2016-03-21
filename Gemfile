@@ -18,6 +18,8 @@ gem 'rouge'
 
 gem 'bourbon'
 
+gem 'phantomjs.rb'
+
 group :development, :test do
   gem 'byebug'
 end
