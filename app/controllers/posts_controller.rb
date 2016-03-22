@@ -2,12 +2,12 @@ class PostsController < ApplicationController
   before_filter :check_user_auth, except: [:index, :show]
 
   def index
-    @posts = Post.all.order('created_at DESC')
+    @posts = Post.published.order('published_at DESC')
   end
 
   def show
     date = Date.parse("#{params[:year]}-#{params[:month]}-#{params[:day]}")
-    @post = Post.where('created_at >= ? and created_at <= ? and slug = ?', date, date + 1.day, params[:slug]).first
+    @post = Post.published.where('published_at >= ? and published_at <= ? and slug = ?', date, date + 1.day, params[:slug]).first
   end
 
   def new

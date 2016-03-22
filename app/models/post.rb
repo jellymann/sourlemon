@@ -1,25 +1,34 @@
 class Post < ApplicationRecord
-  before_save { |post| post.slug ||= post.title.parameterize          }
-  before_save { |post| post.body_html = post.generate_body_html       }
-  before_save { |post| post.summary_html = post.generate_summary_html }
+  before_save { |post| post.slug ||= post.title.parameterize             }
+  before_save { |post| post.body_html = post.generate_body_html          }
+  before_save { |post| post.summary_html = post.generate_summary_html    }
+  before_save { |post| post.published_at ||= Time.zone.now if published? }
 
   validates :body, presence: true
   validates :title, presence: true
+  validates :published_at, presence: true, if: :published?
+
+  scope :published,   -> { where(published: true)  }
+  scope :unpublished, -> { where(published: false) }
 
   SUMMARY_HEIGHT = 252
 
   def slug_url
     @_slug_url ||= begin
-      "/blog/#{created_at.strftime('%Y/%m/%d')}/#{slug}"
+      "/blog/#{published_at.strftime('%Y/%m/%d')}/#{slug}"
     end
   end
 
   def display_date
-    created_at.strftime('%d %B %Y')
+    published_at.strftime('%d %B %Y')
   end
 
   def short_display_date
-    created_at.strftime("%e %b '%y")
+    published_at.strftime("%e %b '%y")
+  end
+
+  def listing_display_date
+    published_at.strftime '%e %b'
   end
 
   def tags_csv

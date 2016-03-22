@@ -1,5 +1,5 @@
 class ArchivesController < ApplicationController
   def show
-    @posts = Post.all.order('created_at DESC').group_by { |post| post.created_at.year }
+    @posts = Post.published.order('published_at DESC').group_by { |post| post.published_at.year }
   end
 end

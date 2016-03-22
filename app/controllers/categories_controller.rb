@@ -1,6 +1,6 @@
 class CategoriesController < ApplicationController
   def show
     @tag = params[:tag]
-    @posts = Post.where("? = ANY (tags)", @tag).order('created_at DESC').group_by { |post| post.created_at.year }
+    @posts = Post.published.where("? = ANY (tags)", @tag).order('published_at DESC').group_by { |post| post.published_at.year }
   end
 end

@@ -5,6 +5,6 @@
       .archive-posts
         - posts.each do |post|
           .archive-post
-            .archive-post-date= post.created_at.strftime '%e %b'
+            .archive-post-date= post.listing_display_date
             .archive-post-title= post.title
             = link_to '', post.slug_url, class: 'archive-overlay'
