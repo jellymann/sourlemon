@@ -1,4 +1,6 @@
 (function() {
+  var initialPageLoad = true;
+
   (function(s,o,u,r,l,e,m){s['GoogleAnalyticsObject']=l;s[l]=s[l]||function(){
   (s[l].q=s[l].q||[]).push(arguments)},s[l].l=1*new Date();e=o.createElement(u),
   m=o.getElementsByTagName(u)[0];e.async=1;e.src=r;m.parentNode.insertBefore(e,m)
@@ -10,11 +12,43 @@
     ga('send', 'pageview', window.location.pathname);
   }
 
+  function trackVisitTiming(timing) {
+    ga('send', 'timing', {
+      'timingCategory': 'Navigation',
+      'timingVar': 'navigate',
+      'timingValue': timing.visitEnd - timing.visitStart,
+      'timingLabel': window.location.pathname
+    });
+    ga('send', 'timing', {
+      'timingCategory': 'Navigation',
+      'timingVar': 'load',
+      'timingValue': timing.requestEnd - timing.requestStart,
+      'timingLabel': window.location.pathname
+    });
+  };
+
+  function trackInitialPageLoad() {
+    ga('send', 'timing', {
+      'timingCategory': 'Page Load',
+      'timingVar': 'load',
+      'timingValue': performance.now(),
+      'timingLabel': window.location.pathname
+    });
+  }
+
   if (Turbolinks && Turbolinks.supported) {
-    document.addEventListener('turbolinks:load', function() {
+    document.addEventListener('turbolinks:load', function(event) {
+      if (initialPageLoad) {
+        initialPageLoad = false;
+        trackInitialPageLoad();
+      }
+      if (event.data.timing && event.data.timing.visitStart) {
+        trackVisitTiming(event.data.timing);
+      }
       trackPageView();
     }, true);
   } else {
     trackPageView();
+    document.addEventListener('DOMContentLoaded', trackInitialPageLoad);
   }
 })();
