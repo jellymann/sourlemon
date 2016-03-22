@@ -7,8 +7,7 @@
   ga('create', '<%= Rails.application.secrets.google_analytics_uid %>', 'auto');
 
   function trackPageView() {
-    console.log("tracking page view");
-    ga('send', 'pageview');
+    ga('send', 'pageview', window.location.pathname);
   }
 
   if (Turbolinks && Turbolinks.supported) {
