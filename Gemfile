@@ -9,9 +9,9 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'slim-rails'
 
-gem 'turbolinks', '~> 5.0.0.beta'
+gem 'turbolinks', '~> 5.0.0.beta2', '< 5.1'
 
-gem 'devise', '>= 4.0.0.rc1', '< 4.1'
+gem 'devise', '>= 4.0.0.rc2', '< 4.1'
 gem 'redcarpet'
 
 gem 'rouge'

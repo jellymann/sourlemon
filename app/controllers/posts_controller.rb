@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_filter :check_user_auth, except: [:index, :show]
+  before_action :check_user_auth, except: [:index, :show]
 
   def index
     @posts = Post.published.order('published_at DESC')

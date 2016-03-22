@@ -14,29 +14,27 @@ class Post < ApplicationRecord
   SUMMARY_HEIGHT = 252
 
   def slug_url
-    @_slug_url ||= begin
-      "/blog/#{published_at.strftime('%Y/%m/%d')}/#{slug}"
-    end
+    "/blog/#{published_or_created_at.strftime('%Y/%m/%d')}/#{slug}"
   end
 
   def display_date
-    published_at.strftime('%d %B %Y')
+    published_or_created_at.strftime('%e %B %Y')
   end
 
   def short_display_date
-    published_at.strftime("%e %b '%y")
+    published_or_created_at.strftime("%e %b '%y")
   end
 
   def listing_display_date
-    published_at.strftime '%e %b'
+    published_or_created_at.strftime '%e %b'
   end
 
   def tags_csv
     tags.join(', ')
   end
 
-  def tags_csv=(tags)
-    tags = tags.split(',').map(&:strip)
+  def tags_csv=(value)
+    self.tags = value.split(',').map(&:strip)
   end
 
   def generate_body_html
@@ -48,6 +46,10 @@ class Post < ApplicationRecord
   end
 
   private
+
+  def published_or_created_at
+    published_at || created_at
+  end
 
   def markdown
     @_markdown ||= Redcarpet::Markdown.new(LemonHTMLRenderer, fenced_code_blocks: true)
