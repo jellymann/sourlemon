@@ -49,7 +49,7 @@ class PostsController < ApplicationController
     end
 
     def post_params
-      params.require(:post).permit(:title, :body, :tags_csv)
+      params.require(:post).permit(:title, :body, :tags_csv, :published, :published_at)
     end
 
     def post_params_with_tags
