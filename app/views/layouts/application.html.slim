@@ -38,6 +38,7 @@ html
       = link_to 'Archives', blog_archives_path, class: current_page?(blog_archives_path) ? 'current' : ''
       - if user_signed_in?
         = link_to 'New Post', new_post_path
+        = link_to 'Unpublished', unpublished_posts_path
         = button_to 'Sign Out', destroy_user_session_path, :method => :delete
 
     #overlay data-turbolinks-permanent=true

@@ -7,4 +7,4 @@
           .archive-post
             .archive-post-date= post.listing_display_date
             .archive-post-title= post.title
-            = link_to '', post.slug_url, class: 'archive-overlay'
+            = link_to '', slug_path(post), class: 'archive-overlay'

@@ -8,12 +8,12 @@ class Post < ApplicationRecord
   validates :title, presence: true
   validates :published_at, presence: true, if: :published?
 
-  scope :published,   -> { where(published: true)  }
-  scope :unpublished, -> { where(published: false) }
+  scope :published,   -> { where(published: true) }
+  scope :unpublished, -> { where(published: false).or(Post.where(published: nil)) }
 
   SUMMARY_HEIGHT = 252
 
-  def slug_url
+  def slug_path
     "/blog/#{published_or_created_at.strftime('%Y/%m/%d')}/#{slug}"
   end
 

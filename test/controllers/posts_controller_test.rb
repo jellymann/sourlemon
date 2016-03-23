@@ -11,8 +11,12 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should show post" do
-    get @post.slug_url
+    get @post.slug_path
     assert_response :success
+  end
+
+  test "should respond to unpublished post with 404" do
+    assert_raises(ActionController::RoutingError) { get posts(:unpublished).slug_path }
   end
 
   # TODO: figure out how to sign in

@@ -8,6 +8,7 @@ class PostsController < ApplicationController
   def show
     date = Date.parse("#{params[:year]}-#{params[:month]}-#{params[:day]}")
     @post = Post.published.where('published_at >= ? and published_at <= ? and slug = ?', date, date + 1.day, params[:slug]).first
+    raise ActionController::RoutingError.new('Not Found') if @post.nil?
   end
 
   def new
@@ -22,7 +23,7 @@ class PostsController < ApplicationController
     @post = Post.new(post_params_with_tags)
 
     if @post.save
-      redirect_to @post.slug_url, notice: 'Post was successfully created.'
+      redirect_to slug_path(@post), notice: 'Post was successfully created.'
     else
       render :new
     end
@@ -31,7 +32,7 @@ class PostsController < ApplicationController
   def update
     @post = find_post
     if @post.update(post_params_with_tags)
-      redirect_to @post.slug_url, notice: 'Post was successfully updated.'
+      redirect_to slug_path(@post), notice: 'Post was successfully updated.'
     else
       render :edit
     end

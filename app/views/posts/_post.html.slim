@@ -6,7 +6,7 @@
       = link_to tag, "/blog/categories/#{tag}", class: 'post-tag'
 
   .body
-    h1= link_to post.title, post.slug_url
+    h1= link_to post.title, slug_path(post)
     - if user_signed_in? && !summary
       .admin-buttons
         = button_to 'Edit', edit_post_path(post), method: :get
@@ -14,4 +14,4 @@
     == summary ? post.summary_html : post.body_html
 
   - if summary
-    = link_to '', post.slug_url, class: 'body-fade'
+    = link_to '', slug_path(post), class: 'body-fade'

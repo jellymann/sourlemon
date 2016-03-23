@@ -1,9 +1,9 @@
 require 'test_helper'
 
 class PostTest < ActiveSupport::TestCase
-  test "#slug_url" do
-    assert_equal "/blog/2016/03/01/some-blog-post", posts(:published).slug_url
-    assert_equal "/blog/2016/04/12/my-new-blog-post", posts(:unpublished).slug_url
+  test "#slug_path" do
+    assert_equal "/blog/2016/03/01/some-blog-post", posts(:published).slug_path
+    assert_equal "/blog/2016/04/12/my-new-blog-post", posts(:unpublished).slug_path
   end
 
   test "#display_date" do
