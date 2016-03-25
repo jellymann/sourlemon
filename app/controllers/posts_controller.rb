@@ -54,7 +54,7 @@ class PostsController < ApplicationController
 
     def post_params_with_tags
       post_params.dup.tap { |p|
-        p[:tags] = p[:tags_csv].split(',').map(&:strip)
+        p[:tags] = p[:tags_csv].split(',').map(&:strip) if p[:tags_csv]
       }
     end
 
