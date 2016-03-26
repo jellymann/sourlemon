@@ -121,48 +121,56 @@ class Post < ApplicationRecord
     """
   end
 
+  def summary_trim_boilerplate
+    """
+    document.head.innerHTML += '<style>' +
+      #{::Sprockets::Railtie.build_environment(Rails.application)["application-inline.css"].to_s.chomp.to_json} +
+      #{::Sprockets::Railtie.build_environment(Rails.application)["posts-index-inline.css"].to_s.chomp.to_json} +
+      #{::Sprockets::Railtie.build_environment(Rails.application)["application.css"].to_s.chomp.to_json} +
+    '</style>';
+    document.getElementsByTagName('html')[0].classList.add('css-loaded');
+    #{::Sprockets::Railtie.build_environment(Rails.application)["webfontloader/webfontloader.js"].to_s}
+    WebFont.load({
+      google: { families: [
+        'Roboto:400,300,300italic,400italic,500,500italic,700,700italic',
+        'Roboto+Mono:400,700'
+      ] },
+      active: function() {
+        #{ js_try_catch { yield } }
+      }
+    });
+    """
+  end
+
   def summary_trim_script
     phantom_page_evaluate do
-      """
-      document.head.innerHTML += '<style>' +
-        #{::Sprockets::Railtie.build_environment(Rails.application)["application-inline.css"].to_s.chomp.to_json} +
-        #{::Sprockets::Railtie.build_environment(Rails.application)["posts-index-inline.css"].to_s.chomp.to_json} +
-        #{::Sprockets::Railtie.build_environment(Rails.application)["application.css"].to_s.chomp.to_json} +
-      '</style>';
-      document.getElementsByTagName('html')[0].classList.add('css-loaded');
-      #{::Sprockets::Railtie.build_environment(Rails.application)["webfontloader/webfontloader.js"].to_s}
-      WebFont.load({
-        google: { families: [
-          'Roboto:400,300,300italic,400italic,500,500italic,700,700italic',
-          'Roboto+Mono:400,700'
-        ] },
-        active: function() {
-          document.body.innerHTML += #{html_wrapper_for_summary_trim.to_json};
+      summary_trim_boilerplate do
+        """
+        document.body.innerHTML += #{html_wrapper_for_summary_trim.to_json};
 
-          var wrapper = document.getElementById('postBody');
-          var postContainer = document.getElementById('postContainer');
-          var maxHeight = document.defaultView.getComputedStyle(postContainer, null).getPropertyValue('max-height');
-          maxHeight = parseInt(maxHeight.replace(/(\\d+)px/, '$&'), 10);
+        var wrapper = document.getElementById('postBody');
+        var postContainer = document.getElementById('postContainer');
+        var maxHeight = document.defaultView.getComputedStyle(postContainer, null).getPropertyValue('max-height');
+        maxHeight = parseInt(maxHeight.replace(/(\\d+)px/, '$&'), 10);
 
-          var fullBody = document.createElement('div');
-          fullBody.innerHTML = #{html_for_summary.to_json};
+        var fullBody = document.createElement('div');
+        fullBody.innerHTML = #{html_for_summary.to_json};
 
-          var lastHeight = 0;
-          while (fullBody.children.length > 0) {
-            wrapper.appendChild(fullBody.children[0]);
-            if (postContainer.clientHeight === lastHeight) {
-              wrapper.children[wrapper.children.length - 1].remove();
-              break;
-            }
-            if (postContainer.clientHeight >= maxHeight) break;
-            lastHeight = postContainer.clientHeight;
+        var lastHeight = 0;
+        while (fullBody.children.length > 0) {
+          wrapper.appendChild(fullBody.children[0]);
+          if (postContainer.clientHeight === lastHeight) {
+            wrapper.children[wrapper.children.length - 1].remove();
+            break;
           }
-          wrapper.getElementsByTagName('h1')[0].remove();
-          console.log(wrapper.innerHTML);
-          alert('DONE');
+          if (postContainer.clientHeight >= maxHeight) break;
+          lastHeight = postContainer.clientHeight;
         }
-      });
-      """
+        wrapper.getElementsByTagName('h1')[0].remove();
+        console.log(wrapper.innerHTML);
+        alert('DONE');
+        """
+      end
     end
   end
 end
