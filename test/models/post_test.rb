@@ -70,8 +70,7 @@ backsideZipPage(pixel, realNavigationApp * active + gif);
 var smb_sector_null = grepPlagiarism + swappable_tiff(miniRestoreVlog) -
         monochrome(17, domain_overwrite + zebibyte_mysql_kilobit,
         ipvDviTouchscreen);
-</code></pre><h2>Dextro sub potitus petis tempusque anima</h2>
-''', posts(:published).generate_summary_html
+</code></pre>''', posts(:published).generate_summary_html
   end
 
   test ".published" do
