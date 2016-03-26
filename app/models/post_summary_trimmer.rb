@@ -1,10 +1,16 @@
 class PostSummaryTrimmer
+  ERROR_STRING = "*** SOMETHING WENT WRONG ***";
+
+  class JSError < StandardError; end
+
   def initialize post
     @post = post
   end
 
-  def perform
-    Phantomjs.inline(summary_trim_script).strip
+  def perform(phantomjs = Phantomjs)
+    phantomjs.inline(summary_trim_script).strip.tap do |result|
+      handle_error(result)
+    end
   end
 
   private
@@ -25,5 +31,9 @@ class PostSummaryTrimmer
     b = binding
     erb = ERB.new(File.read(File.expand_path('../post_summary_trimmer_snippets/summary_trim_script.js.erb', __FILE__)))
     erb.result(b)
+  end
+
+  def handle_error(result)
+    raise JSError.new(result.split(ERROR_STRING)[1]) if result.include?(ERROR_STRING)
   end
 end
