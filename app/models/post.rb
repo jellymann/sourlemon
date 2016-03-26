@@ -102,7 +102,9 @@ class Post < ApplicationRecord
     try {
       var page = require('webpage').create();
       page.viewportSize = { width: 1920, height: 1080 };
-      page.onConsoleMessage = console.log.bind(console);
+      page.onConsoleMessage = function(msg) {
+        console.log(msg);
+      };
       page.onAlert = function(msg) {
         if (msg === 'DONE') phantom.exit();
       };
