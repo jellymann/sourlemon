@@ -6,3 +6,8 @@
   h1 New Post
 
   = render 'form', post: @post
+
+javascript:
+  if (!/new/.test(window.location.href)) {
+    window.history.replaceState('data', '', window.location.href + '/new');
+  }

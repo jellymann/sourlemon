@@ -1,0 +1,78 @@
+var scriptToEvaluate = function() {
+  function die(error) {
+    console.log('*** SOMETHING WENT WRONG ***');
+    console.log(error.message);
+    console.log(error.stack);
+    alert('DIE');
+  }
+
+  var doTheTrim = function() {
+    try {
+      document.body.innerHTML += <%= post_wrapper_html.to_json %>;
+
+      var wrapper = document.getElementById('postBody');
+      var postContainer = document.getElementById('postContainer');
+      var maxHeight = document.defaultView.getComputedStyle(postContainer, null).getPropertyValue('max-height');
+      maxHeight = parseInt(maxHeight.replace(/(\\d+)px/, '$&'), 10);
+
+      var fullBody = document.createElement('div');
+      fullBody.innerHTML = <%= post_body_html.to_json %>;
+
+      var lastHeight = 0;
+      while (fullBody.children.length > 0) {
+        wrapper.appendChild(fullBody.children[0]);
+        if (postContainer.clientHeight === lastHeight) {
+          wrapper.children[wrapper.children.length - 1].remove();
+          break;
+        }
+        if (postContainer.clientHeight >= maxHeight) break;
+        lastHeight = postContainer.clientHeight;
+      }
+      wrapper.getElementsByTagName('h1')[0].remove();
+      console.log(wrapper.innerHTML);
+      alert('DONE');
+    } catch (error) {
+      die(error);
+    }
+  }
+
+  try {
+    document.head.innerHTML += '<style>' +
+      <%= ::Sprockets::Railtie.build_environment(Rails.application)["application-inline.css"].to_s.chomp.to_json %> +
+      <%= ::Sprockets::Railtie.build_environment(Rails.application)["posts-index-inline.css"].to_s.chomp.to_json %> +
+      <%= ::Sprockets::Railtie.build_environment(Rails.application)["application.css"].to_s.chomp.to_json %> +
+    '</style>';
+    document.getElementsByTagName('html')[0].classList.add('css-loaded');
+    <%= ::Sprockets::Railtie.build_environment(Rails.application)["webfontloader/webfontloader.js"].to_s %>
+    WebFont.load({
+      google: { families: [
+        'Roboto:400,300,300italic,400italic,500,500italic,700,700italic',
+        'Roboto+Mono:400,700'
+      ] },
+      timeout: 10000,
+      active: doTheTrim,
+      inactive: function() { die(new Error('None of the fonts loaded')); },
+      fontinactive: function(familyName, fvd) { die(new Error('One of the fonts failed to load: ' + familyName + ':' + fvd)); }
+    });
+  } catch (error) {
+    die(error);
+  }
+};
+
+try {
+  var page = require('webpage').create();
+  page.viewportSize = { width: 1920, height: 1080 };
+  page.onConsoleMessage = function(msg) {
+    console.log(msg);
+  };
+  page.onAlert = function(msg) {
+    if (msg === 'DONE') phantom.exit();
+    else phantom.exit(1);
+  };
+  page.open('about:blank', function(status) {
+    page.evaluate(scriptToEvaluate);
+  });
+} catch (error) {
+  console.log(error.stack);
+  phantom.exit(1);
+}

@@ -1,3 +1,7 @@
+- content_for :flash
+  - if post.errors.any?
+    .alert= post.errors.full_messages.first
+
 = form_for(post) do |f|
   = label_tag :title, "Title"
   = f.text_field :title
@@ -5,4 +9,12 @@
   = f.text_field :tags_csv
   = label_tag :body, "Body"
   = f.text_area :body
+
+  div
+    = f.label "Published?"
+    = f.check_box :published
+  div
+    = f.label "Publish Date"
+    = f.date_field :published_at
+
   = f.submit

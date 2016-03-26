@@ -1,9 +1,42 @@
-# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+published:
+  title: Some Blog Post
+  slug: some-blog-post
+  body: |
+    ## Tinguamus fatifero haerent ut deserta sequitur laetabile
 
-one:
-  title: MyString
-  body: MyText
+    Lorem markdownum ignibus es forma; inque urbis et inperfectus scelerum causa
+    miserabile limenque pervenit. Undas dum, vidit huic tolerare, in feret pro
+    natamque, hoc Latonia prementem gramine!
 
-two:
-  title: MyString
-  body: MyText
+        number_services(guid);
+        alignment += sshText;
+        backsideZipPage(pixel, realNavigationApp * active + gif);
+        var smb_sector_null = grepPlagiarism + swappable_tiff(miniRestoreVlog) -
+                monochrome(17, domain_overwrite + zebibyte_mysql_kilobit,
+                ipvDviTouchscreen);
+
+    ## Dextro sub potitus petis tempusque anima
+
+    Ore quod ferasque positasque parens aetherioque ordine et naides ab. Blanditias
+    nostro violabere tibi pendebant gaudia centum tandemque rediturum, Hippomenes
+    alta fuisset iubeas, cui densis, fit. Gutture omnes, curvos pectore mortua
+    venerisque pectoris algae est, quem deduxit et. Procul tamen sinistro se saepe
+    felicior, secernit capitisque regia. Aliquisque terrebant transformata nocte?
+
+    Ipse ripis murmure moverent; Hyantea submisit narrat. Amanti domui pulcherrime
+    quater sacra cursus in habebam dixerat per: desierant aestuat pictas cursu id.
+    Aequalis animos, cincta addit, est harenas sonuit?
+  tags:
+    - foo
+    - bar
+  published: true
+  published_at: 2016-03-01 22:47:54
+
+unpublished:
+  title: My New Blog Post
+  slug: my-new-blog-post
+  body: |
+    ## Dolor sit amet
+
+    A man a plan a canal panama.
+  created_at: 2016-04-12 09:12:47

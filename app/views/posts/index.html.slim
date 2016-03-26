@@ -2,4 +2,4 @@
   = ::Sprockets::Railtie.build_environment(Rails.application)["posts-index-inline.css"].to_s
 
 - @posts.each do |post|
-  = render 'post', post: post, summary: true
+  = render 'posts/post', post: post, summary: true

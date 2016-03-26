@@ -1,13 +1,14 @@
 class PostsController < ApplicationController
-  before_filter :check_user_auth, except: [:index, :show]
+  before_action :check_user_auth, except: [:index, :show]
 
   def index
-    @posts = Post.all.order('created_at DESC')
+    @posts = Post.published.order('published_at DESC')
   end
 
   def show
     date = Date.parse("#{params[:year]}-#{params[:month]}-#{params[:day]}")
-    @post = Post.where('created_at >= ? and created_at <= ? and slug = ?', date, date + 1.day, params[:slug]).first
+    @post = Post.published.where('published_at >= ? and published_at <= ? and slug = ?', date, date + 1.day, params[:slug]).first
+    raise ActionController::RoutingError.new('Not Found') if @post.nil?
   end
 
   def new
@@ -22,7 +23,7 @@ class PostsController < ApplicationController
     @post = Post.new(post_params_with_tags)
 
     if @post.save
-      redirect_to @post.slug_url, notice: 'Post was successfully created.'
+      redirect_to slug_path(@post), notice: 'Post was successfully created.'
     else
       render :new
     end
@@ -31,7 +32,7 @@ class PostsController < ApplicationController
   def update
     @post = find_post
     if @post.update(post_params_with_tags)
-      redirect_to @post.slug_url, notice: 'Post was successfully updated.'
+      redirect_to slug_path(@post), notice: 'Post was successfully updated.'
     else
       render :edit
     end
@@ -48,12 +49,12 @@ class PostsController < ApplicationController
     end
 
     def post_params
-      params.require(:post).permit(:title, :body, :tags_csv)
+      params.require(:post).permit(:title, :body, :tags_csv, :published, :published_at)
     end
 
     def post_params_with_tags
       post_params.dup.tap { |p|
-        p[:tags] = p[:tags_csv].split(',').map(&:strip)
+        p[:tags] = p[:tags_csv].split(',').map(&:strip) if p[:tags_csv]
       }
     end
 

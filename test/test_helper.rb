@@ -7,4 +7,6 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+  # FIXME: doesn't seem to work in rails 5
+  # include Devise::TestHelpers
 end
