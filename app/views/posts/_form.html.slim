@@ -17,8 +17,9 @@
     = f.label "Publish Date"
     = f.date_field :published_at
 
-  div
-    = f.label "Import from Jekyll/Octopress"
-    = f.file_field :import
+  - if !post.persisted?
+    div
+      = f.label "Import from Jekyll/Octopress"
+      = f.file_field :import
 
   = f.submit
