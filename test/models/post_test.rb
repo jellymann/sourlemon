@@ -68,4 +68,25 @@ Aequalis animos, cincta addit, est harenas sonuit?</p>
   test ".unpublished" do
     assert_equal [posts(:unpublished)], Post.unpublished
   end
+
+  test ".from_jekyll" do
+    text = '''
+---
+title: "Hello World"
+date: 2014-02-28 16:57:04 +0200
+categories:
+- foo
+- bar
+- baz
+---
+Lorem ipsum dolor sit amet
+'''
+    post = Post.from_jekyll(text)
+
+    assert_kind_of Post, post
+    assert_equal 'Hello World', post.title
+    assert_equal DateTime.parse('2014-02-28 16:57:04 +0200'), post.published_at
+    assert_equal ['foo', 'bar', 'baz'], post.tags
+    assert_equal 'Lorem ipsum dolor sit amet', post.body.chomp
+  end
 end

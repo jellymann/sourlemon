@@ -45,6 +45,17 @@ class Post < ApplicationRecord
     PostSummaryTrimmer.new(self).perform
   end
 
+  def self.from_jekyll(markdown)
+    markdown =~ /^(---\s*\n.*?\n?)^(---\s*$\n?)/m
+    metadata = YAML.load($1) if $1
+    markdown = $' or markdown
+
+    Post.new title: metadata["title"],
+             body: markdown,
+             tags: metadata["categories"],
+             published_at: metadata["date"]
+  end
+
   private
 
   def published_or_created_at
