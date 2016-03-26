@@ -51,8 +51,8 @@ var scriptToEvaluate = function() {
       ] },
       timeout: 10000,
       active: doTheTrim,
-      inactive: function() { die('None of the fonts loaded'); },
-      fontinactive: function(familyName, fvd) { die('One of the fonts failed to load: ' + familyName + ':' + fvd); }
+      inactive: function() { die(new Error('None of the fonts loaded')); },
+      fontinactive: function(familyName, fvd) { die(new Error('One of the fonts failed to load: ' + familyName + ':' + fvd)); }
     });
   } catch (error) {
     die(error);
