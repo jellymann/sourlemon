@@ -116,4 +116,44 @@ Lorem ipsum dolor sit amet
 
     assert_equal [], post.tags
   end
+
+  test ".from_jekyll with images" do
+    text = '''
+---
+title: "Hello World"
+date: 2014-02-28 16:57:04 +0200
+---
+Lorem ipsum dolor sit amet
+
+{% img center /images/someExample.png %}
+{% img center /images/some-other-example-2.png %}
+{% img center /images/other_other_example.png %}
+'''
+    post = Post.from_jekyll(text)
+
+    assert_equal '''Lorem ipsum dolor sit amet
+
+![Some Example](http://www.example.com/someExample.png)
+![Some Other Example 2](http://www.example.com/some-other-example-2.png)
+![Other Other Example](http://www.example.com/other_other_example.png)
+''', post.body
+  end
+
+  test ".from_jekyll with inter-blog links" do
+    text = '''
+---
+title: "Hello World"
+date: 2014-02-28 16:57:04 +0200
+---
+Lorem ipsum dolor sit amet
+
+See this [Other Post]({% post_url 2014-02-28-some-other-post %}), and this [Other Other Post]({% post_url 2015-03-30-other-other-post %})
+'''
+    post = Post.from_jekyll(text)
+
+    assert_equal '''Lorem ipsum dolor sit amet
+
+See this [Other Post](/blog/2014/02/28/some-other-post), and this [Other Other Post](/blog/2015/03/30/other-other-post)
+''', post.body
+  end
 end

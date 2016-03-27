@@ -52,6 +52,16 @@ class Post < ApplicationRecord
     tags = metadata["categories"] || metadata["category"] || []
     tags = [tags] if tags.is_a? String
 
+    markdown.gsub!(
+      /\{\% post_url (\d\d\d\d)-(\d\d)-(\d\d)-([^\s]+) \%\}/,
+      '/blog/\1/\2/\3/\4'
+    )
+
+    markdown.gsub!(/\{\% img \w+ \/images\/([^\s]+) \%\}/) do
+      alt_text = $1.underscore.humanize.split('.').first.split(' ').map(&:capitalize).join(' ')
+      "![#{alt_text}](#{Sourlemon::Application.secrets.images_url}/#{$1})"
+    end
+
     Post.new title: metadata["title"],
              body: markdown,
              tags: tags,
