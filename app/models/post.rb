@@ -1,7 +1,7 @@
 class Post < ApplicationRecord
-  before_save { |post| post.slug ||= post.title.parameterize             }
-  before_save { |post| post.body_html = post.generate_body_html          }
-  before_save { |post| post.summary_html = post.generate_summary_html    }
+  before_save { |post| post.slug ||= post.title.parameterize }
+  before_save { |post| post.body_html = post.generate_body_html if post.body_changed? }
+  before_save { |post| post.summary_html = post.generate_summary_html if post.body_changed? || post.title_changed? }
   before_save { |post| post.published_at ||= Time.zone.now if published? }
 
   validates :body, presence: true
