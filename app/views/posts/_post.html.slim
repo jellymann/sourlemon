@@ -19,3 +19,6 @@
 
   - if summary
     = link_to '', slug_path(post), class: 'body-fade'
+  - else
+    = link_to "Tweet", "https://twitter.com/share", class: "twitter-share-button", "data-text" => post.title, "data-via" => "jellym4nn", "data-hashtags" => post.tags.join(','), "data-turbolinks" => false
+    = javascript_include_tag 'twitter'
