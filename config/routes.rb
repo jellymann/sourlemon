@@ -12,5 +12,7 @@ Rails.application.routes.draw do
   get '/blog/categories/:tag', to: 'categories#show'
   get '/blog/archives', to: 'archives#show'
 
+  resource :about, only: [:show]
+
   resources :unpublished_posts, only: [:show, :index]
 end

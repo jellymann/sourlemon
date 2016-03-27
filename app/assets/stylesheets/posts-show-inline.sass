@@ -9,9 +9,6 @@
   font-size: 14px
   line-height: 1.428571429
 
-  @media screen and (max-width: $break-small)
-    margin: 0
-
   .pre-body
     height: 2rem
 
@@ -36,9 +33,14 @@
       float: right
       background: $accent-color
       color: white
+      border-bottom: none
       padding: 0.1rem 0.3rem 0.2rem 0.3rem
       margin-bottom: 0.1rem
       margin-left: 0.3rem
+
+  h1
+    a
+      color: inherit
 
   .body
     pre
