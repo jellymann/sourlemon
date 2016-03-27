@@ -3,4 +3,9 @@
 
 h1.archive-heading.green Blog Archive
 
-= render '/shared/post_listing', posts: @posts
+
+- if @posts.empty?
+  p.empty-message
+   | There are no posts right now. Either I've accidentally dropped my database, or I'm busy fixing something. Come back later!
+- else
+  = render '/shared/post_listing', posts: @posts

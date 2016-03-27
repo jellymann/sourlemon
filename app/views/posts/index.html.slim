@@ -1,5 +1,9 @@
 = content_for :critical_css do
   = ::Sprockets::Railtie.build_environment(Rails.application)["posts-index-inline.css"].to_s
 
-- @posts.each do |post|
-  = render 'posts/post', post: post, summary: true
+- if @posts.empty?
+  p.empty-message
+   | There are no posts right now. Either I've accidentally dropped my database, or I'm busy fixing something. Come back later!
+- else
+  - @posts.each do |post|
+    = render 'posts/post', post: post, summary: true
