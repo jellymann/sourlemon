@@ -12,18 +12,21 @@ body
   font-family: sans-serif
   background: $background-color
 
-a
-  color: inherit
-  text-decoration: none
-
 body
   position: relative
+
+a
+  color: $dark-primary-color
+  text-decoration: none
 
 header
   height: 48px
   width: 100%
   color: white
   background: $dark-primary-color
+
+  a
+    color: inherit
 
   .logo
     position: relative
@@ -45,6 +48,9 @@ header
 
 nav
   display: none
+
+  a
+    color: inherit
 
 #overlay
   display: none
@@ -68,6 +74,17 @@ nav
     width: $post-width-large
     left: 50%
     margin-left: -$post-width-large-half
+
+  .material
+    position: relative
+    padding: 1rem 5%
+    margin: 1rem 0
+    background: white
+    font-size: 14px
+    line-height: 1.428571429
+
+    @media screen and (max-width: $break-small)
+      margin: 0
 
 .turbolinks-progress-bar
   background: $accent-color
