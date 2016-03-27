@@ -37,7 +37,7 @@ class PostTest < ActiveSupport::TestCase
     assert_equal '''<h2>Tinguamus fatifero haerent ut deserta sequitur laetabile</h2>
 
 <p>Lorem markdownum ignibus es forma; inque urbis et inperfectus scelerum causa
-miserabile limenque pervenit. Undas dum, vidit huic tolerare, in feret pro
+miserabile limenque pervenit. Undas dum, vidit huic tolerare, in it’s feret pro
 natamque, hoc Latonia prementem gramine!</p>
 <pre class="highlight plaintext"><code>number_services(guid);
 alignment += sshText;

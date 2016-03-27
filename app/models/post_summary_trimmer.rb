@@ -29,7 +29,8 @@ class PostSummaryTrimmer
 
   def summary_trim_script
     b = binding
-    erb = ERB.new(File.read(File.expand_path('../post_summary_trimmer_snippets/summary_trim_script.js.erb', __FILE__)))
+    file = File.read(File.expand_path('../post_summary_trimmer_snippets/summary_trim_script.js.erb', __FILE__))
+    erb = ERB.new(file)
     erb.result(b)
   end
 
