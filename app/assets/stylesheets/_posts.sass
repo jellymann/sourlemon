@@ -14,10 +14,6 @@
 .post
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2)
 
-  h1
-    a:hover
-      border-bottom: 2px dotted $primary-text-color
-
   @media screen and (max-width: $break-small)
     margin: 0
     border-bottom: 1px solid $divider-color
@@ -27,13 +23,34 @@
     &:hover
       box-shadow: 0 6px 10px 0 rgba(0, 0, 0, 0.14), 0 1px 18px 0 rgba(0, 0, 0, 0.12), 0 3px 5px -1px rgba(0, 0, 0, 0.4)
 
-      h1
-        a
-          border-bottom: 2px dotted $primary-text-color
+      .body h1 a
+        border-bottom: 2px dotted $primary-text-color
+
+  .body
+    a
+      color: $dark-primary-color
+      border-bottom: 1px dotted $dark-primary-color
+
+      &:hover
+        color: $accent-color
+        border-bottom: 1px solid $accent-color
+
+    h1 a
+      color: $primary-text-color
+      border-bottom: none
+
+      &:hover
+        color: $primary-text-color
+        border-bottom: 2px dotted $primary-text-color
+
+    img
+      box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2)
 
 .post-tag
   border-radius: 2px
   transition: box-shadow 0.28s cubic-bezier(0.4, 0, 0.2, 1)
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2)
+
   &:hover
     box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2)
     text-decoration: underline

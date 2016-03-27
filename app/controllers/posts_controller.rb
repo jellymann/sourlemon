@@ -20,7 +20,7 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = Post.new(post_params_with_tags)
+    @post = create_post
 
     if @post.save
       redirect_to slug_path(@post), notice: 'Post was successfully created.'
@@ -56,6 +56,12 @@ class PostsController < ApplicationController
       post_params.dup.tap { |p|
         p[:tags] = p[:tags_csv].split(',').map(&:strip) if p[:tags_csv]
       }
+    end
+
+    def create_post
+      import = params[:post][:import]
+      return Post.new(post_params_with_tags) if import.nil?
+      Post.from_jekyll(import.read)
     end
 
     def check_user_auth
