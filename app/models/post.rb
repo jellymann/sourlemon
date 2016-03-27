@@ -49,10 +49,12 @@ class Post < ApplicationRecord
     markdown =~ /^(---\s*\n.*?\n?)^(---\s*$\n?)/m
     metadata = YAML.load($1) if $1
     markdown = $' or markdown
+    tags = metadata["categories"] || metadata["category"] || []
+    tags = [tags] if tags.is_a? String
 
     Post.new title: metadata["title"],
              body: markdown,
-             tags: metadata["categories"] || [],
+             tags: tags,
              published_at: metadata["date"]
   end
 
