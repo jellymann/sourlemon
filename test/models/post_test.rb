@@ -89,4 +89,17 @@ Lorem ipsum dolor sit amet
     assert_equal ['foo', 'bar', 'baz'], post.tags
     assert_equal 'Lorem ipsum dolor sit amet', post.body.chomp
   end
+
+  test ".from_jekyll with no tags" do
+    text = '''
+---
+title: "Hello World"
+date: 2014-02-28 16:57:04 +0200
+---
+Lorem ipsum dolor sit amet
+'''
+    post = Post.from_jekyll(text)
+
+    assert_equal [], post.tags
+  end
 end

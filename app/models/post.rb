@@ -52,7 +52,7 @@ class Post < ApplicationRecord
 
     Post.new title: metadata["title"],
              body: markdown,
-             tags: metadata["categories"],
+             tags: metadata["categories"] || [],
              published_at: metadata["date"]
   end
 
