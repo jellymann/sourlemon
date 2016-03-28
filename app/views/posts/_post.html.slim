@@ -19,3 +19,7 @@
 
   - if summary
     = link_to '', slug_path(post), class: 'body-fade'
+  - else
+    = javascript_include_tag 'social_media', 'data-turbolinks-track' => 'reload', async: true
+    = link_to "", "https://twitter.com/share", class: "twitter-share-button", "data-text" => post.title, "data-via" => "jellym4nn", "data-hashtags" => post.tags.join(','), "data-turbolinks" => false
+    .fb-share-button data-href=request.original_url data-layout="button"

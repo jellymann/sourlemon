@@ -1,6 +1,8 @@
 doctype html
 html
   head
+    = yield :metadata
+
     meta name="viewport" content="width=device-width, initial-scale=1.0"
     meta name="theme-color" content="#689F38"
     link rel="icon" sizes="192x192" href="/favicon192.png"
@@ -66,3 +68,5 @@ html
       else window.addEventListener('load', cb);
 
     = javascript_include_tag 'application', 'data-turbolinks-track' => 'reload'
+    - if !user_signed_in?
+      = javascript_include_tag 'google_analytics', 'data-turbolinks-track' => 'reload', async: true
