@@ -1,12 +1,5 @@
 = content_for :critical_css do
   = ::Sprockets::Railtie.build_environment(Rails.application)["posts-show-inline.css"].to_s
 
-= content_for :metadata do
-  meta property="og:site_name",     content="Sour Lemon"
-  meta property="og:url",           content=request.original_url
-  meta property="og:type",          content="article"
-  meta property="og:title",         content=@post.title
-  meta property="og:app_id",        content=Sourlemon::Application.secrets.facebook_app_id
-
 .lemon-post
   = render 'posts/post', post: @post, summary: false
