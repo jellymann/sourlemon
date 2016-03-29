@@ -16,7 +16,7 @@ class PostSummaryTrimmer
   private
 
   def summary_markdown
-    @_markdown ||= Redcarpet::Markdown.new(Redcarpet::Render::HTML, fenced_code_blocks: true)
+    @_markdown ||= Redcarpet::Markdown.new(Redcarpet::Render::HTML, Post::REDCARPET_OPTIONS)
   end
 
   def post_body_html

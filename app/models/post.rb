@@ -11,7 +11,10 @@ class Post < ApplicationRecord
   scope :published,   -> { where(published: true) }
   scope :unpublished, -> { where(published: false).or(Post.where(published: nil)) }
 
-  SUMMARY_HEIGHT = 252
+  REDCARPET_OPTIONS = {
+    fenced_code_blocks: true,
+    strikethrough: true
+  }
 
   def slug_path
     "/blog/#{published_or_created_at.strftime('%Y/%m/%d')}/#{slug}"
@@ -75,6 +78,6 @@ class Post < ApplicationRecord
   end
 
   def markdown
-    @_markdown ||= Redcarpet::Markdown.new(LemonHTMLRenderer, fenced_code_blocks: true)
+    @_markdown ||= Redcarpet::Markdown.new(LemonHTMLRenderer, REDCARPET_OPTIONS)
   end
 end
