@@ -20,6 +20,14 @@ class Post < ApplicationRecord
     "/blog/#{published_or_created_at.strftime('%Y/%m/%d')}/#{slug}"
   end
 
+  def identifier
+    "#{published_or_created_at.strftime('%Y-%m-%d')}-#{slug}"
+  end
+
+  def canonical_url
+    "#{Sourlemon::Application.secrets.base_url}#{slug_path}"
+  end
+
   def display_date
     published_or_created_at.strftime('%e %B %Y')
   end
