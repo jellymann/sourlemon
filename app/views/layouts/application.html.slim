@@ -11,7 +11,11 @@ html
     link rel="icon" sizes="32x32" href="/favicon32.png"
     link rel="icon" sizes="16x16" href="/favicon16.png"
 
-    title Sour Lemon
+    title
+      - if content_for? :title
+        = yield(:title)
+      - else
+        | Sour Lemon
     = csrf_meta_tags
 
     style#main-critical-css data-turbolinks-permanent=true
@@ -68,5 +72,6 @@ html
       else window.addEventListener('load', cb);
 
     = javascript_include_tag 'application', 'data-turbolinks-track' => 'reload'
+    = javascript_include_tag 'social_media', 'data-turbolinks-track' => 'reload', async: true
     - if !user_signed_in?
       = javascript_include_tag 'google_analytics', 'data-turbolinks-track' => 'reload', async: true

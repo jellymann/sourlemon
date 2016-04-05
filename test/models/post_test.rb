@@ -6,6 +6,16 @@ class PostTest < ActiveSupport::TestCase
     assert_equal "/blog/2016/04/12/my-new-blog-post", posts(:unpublished).slug_path
   end
 
+  test "#identifier" do
+    assert_equal "2016-03-01-some-blog-post", posts(:published).identifier
+    assert_equal "2016-04-12-my-new-blog-post", posts(:unpublished).identifier
+  end
+
+  test "#canonical_url" do
+    assert_equal "http://www.example.com/blog/2016/03/01/some-blog-post", posts(:published).canonical_url
+    assert_equal "http://www.example.com/blog/2016/04/12/my-new-blog-post", posts(:unpublished).canonical_url
+  end
+
   test "#display_date" do
     assert_equal " 1 March 2016", posts(:published).display_date
     assert_equal "12 April 2016", posts(:unpublished).display_date
