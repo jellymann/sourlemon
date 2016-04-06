@@ -41,25 +41,26 @@
     blockquote
       font-style: italic
       padding: 0.1rem 1rem
-      margin: 0 auto
+      margin: 3rem auto
       width: 80%
       display: block
+      quotes: "“" "”" "‘" "’"
 
       &::before, &::after
-        font-family: cursive
+        font-family: 'Droid Serif', serif
         font-size: 1.5rem
         color: lightgrey
 
       &::before
         content: open-quote
-        margin-left: -2rem
+        position: absolute
+        left: 10%
+        margin-top: -2rem
 
       &::after
         content: close-quote
-        width: 110%
-        display: inline-block
-        rotate: 180deg
-        margin-right: -2rem
+        position: absolute
+        right: 10%
 
       p
         margin: 0
