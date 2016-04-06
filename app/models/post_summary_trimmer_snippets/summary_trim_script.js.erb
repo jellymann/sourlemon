@@ -44,16 +44,16 @@ var scriptToEvaluate = function() {
     '</style>';
     document.getElementsByTagName('html')[0].classList.add('css-loaded');
     <%= ::Sprockets::Railtie.build_environment(Rails.application)["webfontloader/webfontloader.js"].to_s %>
-    WebFont.load({
-      google: { families: [
-        'Roboto:400,300,300italic,400italic,500,500italic,700,700italic',
-        'Roboto+Mono:400,700'
-      ] },
-      timeout: 10000,
-      active: doTheTrim,
-      inactive: function() { die(new Error('None of the fonts loaded')); },
-      fontinactive: function(familyName, fvd) { die(new Error('One of the fonts failed to load: ' + familyName + ':' + fvd)); }
-    });
+    var webFontConfig = <%= WebFont::FONTS.to_json %>;
+    webFontConfig.timeout = 10000;
+    webFontConfig.active = doTheTrim;
+    webFontConfig.inactive = function() {
+      die(new Error('None of the fonts loaded'));
+    };
+    webFontConfig.fontinactive = function(familyName, fvd) {
+      die(new Error('One of the fonts failed to load: ' + familyName + ':' + fvd));
+    };
+    WebFont.load(webFontConfig);
   } catch (error) {
     die(error);
   }
