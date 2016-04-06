@@ -1,5 +1,3 @@
-console.log("Disqus JS");
-
 function getMetadata(property) {
   var tags = document.getElementsByTagName('meta');
 
@@ -11,19 +9,15 @@ function getMetadata(property) {
 };
 
 function loadOrResetDisqus() {
-  console.log("Disqus pageload");
   if ("undefined" === typeof getMetadata('og:url')) {
-    console.log("Not a post, not loading disqus");
     return;
   }
   if ("undefined" === typeof window.DISQUS) {
-    console.log('loading disqus');
 
     var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
     dsq.src = "//<%= Sourlemon::Application.secrets.disqus_app_name %>.disqus.com/embed.js";
     (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
   } else {
-    console.log('reloading disqus');
     DISQUS.reset({
       reload: true,
       config: window.disqus_config
@@ -32,11 +26,9 @@ function loadOrResetDisqus() {
 }
 
 window.disqus_config = function() {
-  console.log('... disqus config ...');
   this.page.identifier = getMetadata('og:identifier');
   this.page.url = getMetadata('og:url');
   this.page.title = getMetadata('og:title');
-  console.log('loading disqus config:', this.page);
 };
 
 document.addEventListener('turbolinks:load', loadOrResetDisqus);
