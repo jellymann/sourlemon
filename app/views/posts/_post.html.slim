@@ -19,7 +19,7 @@
 
   - if summary
     = link_to '', slug_path(post), class: 'body-fade'
-  - else
+  - elsif post.published?
     = link_to "", "https://twitter.com/share", class: "twitter-share-button", "data-text" => post.title, "data-via" => "jellym4nn", "data-hashtags" => post.tags.join(','), "data-turbolinks" => false, "data-url" => post.canonical_url
     .fb-share-button data-href=post.canonical_url data-layout="button"
 
