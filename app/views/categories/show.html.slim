@@ -1,6 +1,10 @@
 = content_for :critical_css do
   = ::Sprockets::Railtie.build_environment(Rails.application)["post-listing-inline.css"].to_s
 
-h1.archive-heading.orange Category "#{@tag}"
+= content_for :title do
+  | Category "#{@tag}"
+
+- if !in_mobile_app?
+  h1.archive-heading.orange Category "#{@tag}"
 
 = render '/shared/post_listing', posts: @posts

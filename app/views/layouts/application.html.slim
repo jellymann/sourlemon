@@ -25,13 +25,14 @@ html
 
   body
 
-    header#main-header data-turbolinks-permanent=true
-      .hamburger onclick="toggleMenu()"
-        span
-      .logo.normal-logo
-        = link_to 'Sour {>.<} Lemon', root_path
-      .logo.small-logo
-        = link_to '{>.<}', root_path
+    - if !in_mobile_app?
+      header#main-header data-turbolinks-permanent=true
+        .hamburger onclick="toggleMenu()"
+          span
+        .logo.normal-logo
+          = link_to 'Sour {>.<} Lemon', root_path
+        .logo.small-logo
+          = link_to '{>.<}', root_path
 
     #flash
       - if alert
@@ -41,14 +42,15 @@ html
       - else
         = yield :flash
 
-    nav#main-menu data-turbolinks-permanent=true
-      = link_to 'Blog', root_path, class: current_page?(root_path) ? 'current' : ''
-      = link_to 'Archives', blog_archives_path, class: current_page?(blog_archives_path) ? 'current' : ''
-      = link_to 'About', about_path, class: current_page?(about_path) ? 'current' : ''
-      - if user_signed_in?
-        = link_to 'New Post', new_post_path
-        = link_to 'Unpublished', unpublished_posts_path
-        = button_to 'Sign Out', destroy_user_session_path, :method => :delete
+    - if !in_mobile_app?
+      nav#main-menu data-turbolinks-permanent=true
+        = link_to 'Blog', root_path, class: current_page?(root_path) ? 'current' : ''
+        = link_to 'Archives', blog_archives_path, class: current_page?(blog_archives_path) ? 'current' : ''
+        = link_to 'About', about_path, class: current_page?(about_path) ? 'current' : ''
+        - if user_signed_in?
+          = link_to 'New Post', new_post_path
+          = link_to 'Unpublished', unpublished_posts_path
+          = button_to 'Sign Out', destroy_user_session_path, :method => :delete
 
     #overlay data-turbolinks-permanent=true
     #loading-overlay

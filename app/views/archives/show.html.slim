@@ -1,6 +1,9 @@
 = content_for :critical_css do
   = ::Sprockets::Railtie.build_environment(Rails.application)["post-listing-inline.css"].to_s
 
+= content_for :title do
+  | Archives
+
 h1.archive-heading.green Blog Archive
 
 
