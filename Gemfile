@@ -11,7 +11,7 @@ gem 'slim-rails'
 
 gem 'turbolinks', '~> 5.0.0', '< 5.1'
 
-gem 'devise', '>= 4.0.0.rc2', '< 4.1'
+gem 'devise', '>= 4.0.0.rc2', '< 4.8'
 gem 'redcarpet'
 
 gem 'rouge'
