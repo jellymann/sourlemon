@@ -84,7 +84,7 @@ GEM
     orm_adapter (0.5.0)
     pg (0.18.4)
     phantomjs.rb (2.1.0)
-    puma (3.0.2)
+    puma (3.12.2)
     rack (2.0.0.alpha)
       json
     rack-mini-profiler (0.9.9.2)
