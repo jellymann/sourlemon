@@ -71,7 +71,6 @@ html
       if (raf) raf(cb);
       else window.addEventListener('load', cb);
 
-    = javascript_include_tag 'https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js'
     = javascript_include_tag 'application', 'data-turbolinks-track' => 'reload'
     = javascript_include_tag 'social_media', 'data-turbolinks-track' => 'reload', async: true
     - if !user_signed_in?
