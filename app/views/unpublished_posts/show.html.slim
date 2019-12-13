@@ -1,5 +1,0 @@
-= content_for :critical_css do
-  = ::Sprockets::Railtie.build_environment(Rails.application)["posts-show-inline.css"].to_s
-
-.lemon-post
-  = render 'posts/post', post: @post, summary: false
